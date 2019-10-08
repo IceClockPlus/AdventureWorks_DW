@@ -12,8 +12,8 @@
   DTS:MaxErrorCount="10"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="35"
-  DTS:VersionGUID="{9AAF8F91-E54E-4BDF-84F2-D2B54E644260}">
+  DTS:VersionBuild="50"
+  DTS:VersionGUID="{633B8CC3-5428-4C4B-AF22-5723B8E501BA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -887,18 +887,23 @@
                   name="Entrada izquierda de combinación de mezcla">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[CurrencyCode]"
+                      refId="Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[CurrencyRateID]"
+                      cachedDataType="i4"
+                      cachedName="CurrencyRateID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Outputs[Salida de ordenación].Columns[CurrencyRateID]" />
+                    <inputColumn
+                      refId="Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[ToCurrencyCode]"
                       cachedDataType="wstr"
                       cachedLength="3"
-                      cachedName="CurrencyCode"
-                      cachedSortKeyPosition="1"
-                      lineageId="Package\Dim_Moneda\Ordenar por CurrencyID.Outputs[Salida de ordenación].Columns[CurrencyCode]" />
+                      cachedName="ToCurrencyCode"
+                      lineageId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Outputs[Salida de ordenación].Columns[ToCurrencyCode]" />
                     <inputColumn
                       refId="Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[Name]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Name"
-                      lineageId="Package\Dim_Moneda\Ordenar por CurrencyID.Outputs[Salida de ordenación].Columns[Name]" />
+                      lineageId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Outputs[Salida de ordenación].Columns[Name]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -908,12 +913,11 @@
                   name="Entrada derecha de combinación de mezcla">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[CodigoMoneda]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="CodigoMoneda"
+                      refId="Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[TasaCambioID]"
+                      cachedDataType="i4"
+                      cachedName="TasaCambioID"
                       cachedSortKeyPosition="1"
-                      lineageId="Package\Dim_Moneda\Ordenar por IdMoneda.Outputs[Salida de ordenación].Columns[CodigoMoneda]" />
+                      lineageId="Package\Dim_Moneda\Ordenar por TasaCambioID.Outputs[Salida de ordenación].Columns[TasaCambioID]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -925,18 +929,44 @@
                   name="Salida de combinación de mezcla">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CurrencyCode]"
-                      dataType="wstr"
-                      length="3"
-                      lineageId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CurrencyCode]"
-                      name="CurrencyCode"
+                      refId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CurrencyRateID]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CurrencyRateID]"
+                      name="CurrencyRateID"
                       sortKeyPosition="1">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="La columna de entrada asociada a esta columna de salida"
-                          name="InputColumnID">#{Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[CurrencyCode]}</property>
+                          name="InputColumnID">#{Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[CurrencyRateID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ToCurrencyCode]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ToCurrencyCode]"
+                      name="ToCurrencyCode">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[ToCurrencyCode]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TasaCambioIDDW]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TasaCambioIDDW]"
+                      name="TasaCambioIDDW">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[TasaCambioID]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -951,20 +981,6 @@
                           dataType="System.Int32"
                           description="La columna de entrada asociada a esta columna de salida"
                           name="InputColumnID">#{Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[Name]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CodigoMonedaDW]"
-                      dataType="wstr"
-                      length="3"
-                      lineageId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CodigoMonedaDW]"
-                      name="CodigoMonedaDW">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="La columna de entrada asociada a esta columna de salida"
-                          name="InputColumnID">#{Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[CodigoMoneda]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1034,24 +1050,13 @@
                   name="Salida de origen de OLE DB">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].Columns[CodigoMoneda]"
-                      dataType="wstr"
+                      refId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].Columns[TasaCambioID]"
+                      dataType="i4"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].ExternalColumns[CodigoMoneda]"
-                      length="3"
-                      lineageId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].Columns[CodigoMoneda]"
-                      name="CodigoMoneda"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].Columns[NombreMoneda]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversión"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].ExternalColumns[NombreMoneda]"
-                      length="50"
-                      lineageId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].Columns[NombreMoneda]"
-                      name="NombreMoneda"
+                      externalMetadataColumnId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].ExternalColumns[TasaCambioID]"
+                      lineageId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].Columns[TasaCambioID]"
+                      name="TasaCambioID"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -1066,6 +1071,10 @@
                       dataType="wstr"
                       length="50"
                       name="NombreMoneda" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].ExternalColumns[TasaCambioID]"
+                      dataType="i4"
+                      name="TasaCambioID" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -1074,17 +1083,10 @@
                   name="Salida de error de origen de OLE DB">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de error de origen de OLE DB].Columns[CodigoMoneda]"
-                      dataType="wstr"
-                      length="3"
-                      lineageId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de error de origen de OLE DB].Columns[CodigoMoneda]"
-                      name="CodigoMoneda" />
-                    <outputColumn
-                      refId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de error de origen de OLE DB].Columns[NombreMoneda]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de error de origen de OLE DB].Columns[NombreMoneda]"
-                      name="NombreMoneda" />
+                      refId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de error de origen de OLE DB].Columns[TasaCambioID]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de error de origen de OLE DB].Columns[TasaCambioID]"
+                      name="TasaCambioID" />
                     <outputColumn
                       refId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
                       dataType="i4"
@@ -1325,13 +1327,12 @@ FROM            Sales.CurrencyRate INNER JOIN
                   name="Entrada de destino de OLE DB">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_Moneda\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CurrencyCode]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="CurrencyCode"
+                      refId="Package\Dim_Moneda\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CurrencyRateID]"
+                      cachedDataType="i4"
+                      cachedName="CurrencyRateID"
                       cachedSortKeyPosition="1"
-                      externalMetadataColumnId="Package\Dim_Moneda\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CodigoMoneda]"
-                      lineageId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CurrencyCode]" />
+                      externalMetadataColumnId="Package\Dim_Moneda\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TasaCambioID]"
+                      lineageId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CurrencyRateID]" />
                     <inputColumn
                       refId="Package\Dim_Moneda\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Name]"
                       cachedDataType="wstr"
@@ -1339,6 +1340,13 @@ FROM            Sales.CurrencyRate INNER JOIN
                       cachedName="Name"
                       externalMetadataColumnId="Package\Dim_Moneda\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NombreMoneda]"
                       lineageId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\Dim_Moneda\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[ToCurrencyCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="ToCurrencyCode"
+                      externalMetadataColumnId="Package\Dim_Moneda\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CodigoMoneda]"
+                      lineageId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ToCurrencyCode]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1352,6 +1360,10 @@ FROM            Sales.CurrencyRate INNER JOIN
                       dataType="wstr"
                       length="50"
                       name="NombreMoneda" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Moneda\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TasaCambioID]"
+                      dataType="i4"
+                      name="TasaCambioID" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1394,11 +1406,10 @@ FROM            Sales.CurrencyRate INNER JOIN
                   name="Entrada de división condicional">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_Moneda\División condicional.Inputs[Entrada de división condicional].Columns[CodigoMonedaDW]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="CodigoMonedaDW"
-                      lineageId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CodigoMonedaDW]" />
+                      refId="Package\Dim_Moneda\División condicional.Inputs[Entrada de división condicional].Columns[TasaCambioIDDW]"
+                      cachedDataType="i4"
+                      cachedName="TasaCambioIDDW"
+                      lineageId="Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TasaCambioIDDW]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -1418,13 +1429,13 @@ FROM            Sales.CurrencyRate INNER JOIN
                       containsID="true"
                       dataType="System.String"
                       description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
-                      name="Expression">[ISNULL](#{Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CodigoMonedaDW]})</property>
+                      name="Expression">[ISNULL](#{Package\Dim_Moneda\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[TasaCambioIDDW]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
                       expressionType="Notify"
-                      name="FriendlyExpression">ISNULL(CodigoMonedaDW)</property>
+                      name="FriendlyExpression">ISNULL(TasaCambioIDDW)</property>
                     <property
                       dataType="System.Int32"
                       description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
@@ -1471,11 +1482,11 @@ FROM            Sales.CurrencyRate INNER JOIN
               </outputs>
             </component>
             <component
-              refId="Package\Dim_Moneda\Ordenar por CurrencyID"
+              refId="Package\Dim_Moneda\Ordenar por CurrencyRateID"
               componentClassID="Microsoft.Sort"
               contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
               description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
-              name="Ordenar por CurrencyID"
+              name="Ordenar por CurrencyRateID"
               version="1">
               <properties>
                 <property
@@ -1490,28 +1501,11 @@ FROM            Sales.CurrencyRate INNER JOIN
               </properties>
               <inputs>
                 <input
-                  refId="Package\Dim_Moneda\Ordenar por CurrencyID.Inputs[Entrada de ordenación]"
+                  refId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Inputs[Entrada de ordenación]"
                   name="Entrada de ordenación">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_Moneda\Ordenar por CurrencyID.Inputs[Entrada de ordenación].Columns[CurrencyCode]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="CurrencyCode"
-                      lineageId="Package\Dim_Moneda\52:invalid">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Especifica las opciones de comparación para datos de caracteres."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Especifica el criterio de ordenación de la columna."
-                          name="NewSortKeyPosition">1</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Dim_Moneda\Ordenar por CurrencyID.Inputs[Entrada de ordenación].Columns[Name]"
+                      refId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Inputs[Entrada de ordenación].Columns[Name]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Name"
@@ -1527,79 +1521,11 @@ FROM            Sales.CurrencyRate INNER JOIN
                           name="NewSortKeyPosition">0</property>
                       </properties>
                     </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Dim_Moneda\Ordenar por CurrencyID.Outputs[Salida de ordenación]"
-                  isSorted="true"
-                  name="Salida de ordenación">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Dim_Moneda\Ordenar por CurrencyID.Outputs[Salida de ordenación].Columns[CurrencyCode]"
-                      dataType="wstr"
-                      length="3"
-                      lineageId="Package\Dim_Moneda\Ordenar por CurrencyID.Outputs[Salida de ordenación].Columns[CurrencyCode]"
-                      name="CurrencyCode"
-                      sortKeyPosition="1">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
-                          name="SortColumnId">#{Package\Dim_Moneda\52:invalid}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Dim_Moneda\Ordenar por CurrencyID.Outputs[Salida de ordenación].Columns[Name]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Dim_Moneda\Ordenar por CurrencyID.Outputs[Salida de ordenación].Columns[Name]"
-                      name="Name">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
-                          name="SortColumnId">#{Package\Dim_Moneda\Datos Moneda Origen.Outputs[Salida de origen de OLE DB].Columns[Name]}</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Dim_Moneda\Ordenar por IdMoneda"
-              componentClassID="Microsoft.Sort"
-              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
-              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
-              name="Ordenar por IdMoneda"
-              version="1">
-              <properties>
-                <property
-                  dataType="System.Boolean"
-                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
-                  name="EliminateDuplicates">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
-                  expressionType="Notify"
-                  name="MaximumThreads">-1</property>
-              </properties>
-              <inputs>
-                <input
-                  refId="Package\Dim_Moneda\Ordenar por IdMoneda.Inputs[Entrada de ordenación]"
-                  name="Entrada de ordenación">
-                  <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_Moneda\Ordenar por IdMoneda.Inputs[Entrada de ordenación].Columns[CodigoMoneda]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="CodigoMoneda"
-                      lineageId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].Columns[CodigoMoneda]">
+                      refId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Inputs[Entrada de ordenación].Columns[CurrencyRateID]"
+                      cachedDataType="i4"
+                      cachedName="CurrencyRateID"
+                      lineageId="Package\Dim_Moneda\Datos Moneda Origen.Outputs[Salida de origen de OLE DB].Columns[CurrencyRateID]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -1612,11 +1538,11 @@ FROM            Sales.CurrencyRate INNER JOIN
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Dim_Moneda\Ordenar por IdMoneda.Inputs[Entrada de ordenación].Columns[NombreMoneda]"
+                      refId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Inputs[Entrada de ordenación].Columns[ToCurrencyCode]"
                       cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="NombreMoneda"
-                      lineageId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].Columns[NombreMoneda]">
+                      cachedLength="3"
+                      cachedName="ToCurrencyCode"
+                      lineageId="Package\Dim_Moneda\Datos Moneda Origen.Outputs[Salida de origen de OLE DB].Columns[ToCurrencyCode]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -1634,37 +1560,118 @@ FROM            Sales.CurrencyRate INNER JOIN
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Dim_Moneda\Ordenar por IdMoneda.Outputs[Salida de ordenación]"
+                  refId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Outputs[Salida de ordenación]"
                   isSorted="true"
                   name="Salida de ordenación">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_Moneda\Ordenar por IdMoneda.Outputs[Salida de ordenación].Columns[CodigoMoneda]"
+                      refId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Outputs[Salida de ordenación].Columns[Name]"
                       dataType="wstr"
-                      length="3"
-                      lineageId="Package\Dim_Moneda\Ordenar por IdMoneda.Outputs[Salida de ordenación].Columns[CodigoMoneda]"
-                      name="CodigoMoneda"
+                      length="50"
+                      lineageId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Outputs[Salida de ordenación].Columns[Name]"
+                      name="Name">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Moneda\Datos Moneda Origen.Outputs[Salida de origen de OLE DB].Columns[Name]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Outputs[Salida de ordenación].Columns[CurrencyRateID]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Outputs[Salida de ordenación].Columns[CurrencyRateID]"
+                      name="CurrencyRateID"
                       sortKeyPosition="1">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
-                          name="SortColumnId">#{Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].Columns[CodigoMoneda]}</property>
+                          name="SortColumnId">#{Package\Dim_Moneda\Datos Moneda Origen.Outputs[Salida de origen de OLE DB].Columns[CurrencyRateID]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Dim_Moneda\Ordenar por IdMoneda.Outputs[Salida de ordenación].Columns[NombreMoneda]"
+                      refId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Outputs[Salida de ordenación].Columns[ToCurrencyCode]"
                       dataType="wstr"
-                      length="50"
-                      lineageId="Package\Dim_Moneda\Ordenar por IdMoneda.Outputs[Salida de ordenación].Columns[NombreMoneda]"
-                      name="NombreMoneda">
+                      length="3"
+                      lineageId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Outputs[Salida de ordenación].Columns[ToCurrencyCode]"
+                      name="ToCurrencyCode">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
-                          name="SortColumnId">#{Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].Columns[NombreMoneda]}</property>
+                          name="SortColumnId">#{Package\Dim_Moneda\Datos Moneda Origen.Outputs[Salida de origen de OLE DB].Columns[ToCurrencyCode]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Moneda\Ordenar por TasaCambioID"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar por TasaCambioID"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Dim_Moneda\Ordenar por TasaCambioID.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Moneda\Ordenar por TasaCambioID.Inputs[Entrada de ordenación].Columns[TasaCambioID]"
+                      cachedDataType="i4"
+                      cachedName="TasaCambioID"
+                      lineageId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].Columns[TasaCambioID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Moneda\Ordenar por TasaCambioID.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Moneda\Ordenar por TasaCambioID.Outputs[Salida de ordenación].Columns[TasaCambioID]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Moneda\Ordenar por TasaCambioID.Outputs[Salida de ordenación].Columns[TasaCambioID]"
+                      name="TasaCambioID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB].Columns[TasaCambioID]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1688,20 +1695,20 @@ FROM            Sales.CurrencyRate INNER JOIN
               refId="Package\Dim_Moneda.Paths[Salida de ordenación]"
               endId="Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
               name="Salida de ordenación"
-              startId="Package\Dim_Moneda\Ordenar por CurrencyID.Outputs[Salida de ordenación]" />
+              startId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Outputs[Salida de ordenación]" />
             <path
               refId="Package\Dim_Moneda.Paths[Salida de ordenación1]"
               endId="Package\Dim_Moneda\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
               name="Salida de ordenación"
-              startId="Package\Dim_Moneda\Ordenar por IdMoneda.Outputs[Salida de ordenación]" />
+              startId="Package\Dim_Moneda\Ordenar por TasaCambioID.Outputs[Salida de ordenación]" />
             <path
               refId="Package\Dim_Moneda.Paths[Salida de origen de OLE DB]"
-              endId="Package\Dim_Moneda\Ordenar por CurrencyID.Inputs[Entrada de ordenación]"
+              endId="Package\Dim_Moneda\Ordenar por CurrencyRateID.Inputs[Entrada de ordenación]"
               name="Salida de origen de OLE DB"
               startId="Package\Dim_Moneda\Datos Moneda Origen.Outputs[Salida de origen de OLE DB]" />
             <path
               refId="Package\Dim_Moneda.Paths[Salida de origen de OLE DB1]"
-              endId="Package\Dim_Moneda\Ordenar por IdMoneda.Inputs[Entrada de ordenación]"
+              endId="Package\Dim_Moneda\Ordenar por TasaCambioID.Inputs[Entrada de ordenación]"
               name="Salida de origen de OLE DB"
               startId="Package\Dim_Moneda\Datos Moneda DW.Outputs[Salida de origen de OLE DB]" />
           </paths>
@@ -1709,13 +1716,13 @@ FROM            Sales.CurrencyRate INNER JOIN
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Dim_TarjetaCredito"
+      DTS:refId="Package\Dim_TarjetaPersona"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Tarea Flujo de datos"
       DTS:DTSID="{87CF8A9E-01D5-4C0A-A633-9BCB6DD6E011}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Dim_TarjetaCredito"
+      DTS:ObjectName="Dim_TarjetaPersona"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -1723,7 +1730,7 @@ FROM            Sales.CurrencyRate INNER JOIN
           version="1">
           <components>
             <component
-              refId="Package\Dim_TarjetaCredito\Combinación de mezcla"
+              refId="Package\Dim_TarjetaPersona\Combinación de mezcla"
               componentClassID="Microsoft.MergeJoin"
               contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
               description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
@@ -1750,50 +1757,68 @@ FROM            Sales.CurrencyRate INNER JOIN
               </properties>
               <inputs>
                 <input
-                  refId="Package\Dim_TarjetaCredito\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+                  refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
                   hasSideEffects="true"
                   name="Entrada izquierda de combinación de mezcla">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_TarjetaCredito\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[CreditCardID]"
+                      refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[CreditCardID]"
                       cachedDataType="i4"
                       cachedName="CreditCardID"
                       cachedSortKeyPosition="1"
-                      lineageId="Package\Dim_TarjetaCredito\Ordenar CreditCardID.Outputs[Salida de ordenación].Columns[CreditCardID]" />
+                      lineageId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[CreditCardID]" />
                     <inputColumn
-                      refId="Package\Dim_TarjetaCredito\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[CardType]"
+                      refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[CardType]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="CardType"
-                      lineageId="Package\Dim_TarjetaCredito\Ordenar CreditCardID.Outputs[Salida de ordenación].Columns[CardType]" />
+                      lineageId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[CardType]" />
+                    <inputColumn
+                      refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[Sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="Sexo"
+                      lineageId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[Sexo]" />
+                    <inputColumn
+                      refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[PersonType]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="PersonType"
+                      lineageId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[PersonType]" />
+                    <inputColumn
+                      refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[ExpYear]"
+                      cachedDataType="i2"
+                      cachedName="ExpYear"
+                      lineageId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[ExpYear]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
                 <input
-                  refId="Package\Dim_TarjetaCredito\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+                  refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
                   hasSideEffects="true"
                   name="Entrada derecha de combinación de mezcla">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_TarjetaCredito\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[IdTarjeta]"
+                      refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[IdTarjeta]"
                       cachedDataType="i4"
                       cachedName="IdTarjeta"
                       cachedSortKeyPosition="1"
-                      lineageId="Package\Dim_TarjetaCredito\Ordenar por IdTarjeta.Outputs[Salida de ordenación].Columns[IdTarjeta]" />
+                      lineageId="Package\Dim_TarjetaPersona\Ordenar por IdTarjeta.Outputs[Salida de ordenación].Columns[IdTarjeta]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Dim_TarjetaCredito\Combinación de mezcla.Outputs[Salida de combinación de mezcla]"
+                  refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla]"
                   isSorted="true"
                   name="Salida de combinación de mezcla">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CreditCardID]"
+                      refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CreditCardID]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CreditCardID]"
+                      lineageId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CreditCardID]"
                       name="CreditCardID"
                       sortKeyPosition="1">
                       <properties>
@@ -1801,34 +1826,76 @@ FROM            Sales.CurrencyRate INNER JOIN
                           containsID="true"
                           dataType="System.Int32"
                           description="La columna de entrada asociada a esta columna de salida"
-                          name="InputColumnID">#{Package\Dim_TarjetaCredito\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[CreditCardID]}</property>
+                          name="InputColumnID">#{Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[CreditCardID]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CardType]"
+                      refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CardType]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Dim_TarjetaCredito\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CardType]"
+                      lineageId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CardType]"
                       name="CardType">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="La columna de entrada asociada a esta columna de salida"
-                          name="InputColumnID">#{Package\Dim_TarjetaCredito\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[CardType]}</property>
+                          name="InputColumnID">#{Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[CardType]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[IdTarjetaDW]"
+                      refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      lineageId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Sexo]"
+                      name="Sexo">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[Sexo]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[PersonType]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[PersonType]"
+                      name="PersonType">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[PersonType]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ExpYear]"
+                      dataType="i2"
+                      lineageId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ExpYear]"
+                      name="ExpYear">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[ExpYear]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[IdTarjetaDW]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[IdTarjetaDW]"
+                      lineageId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[IdTarjetaDW]"
                       name="IdTarjetaDW">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="La columna de entrada asociada a esta columna de salida"
-                          name="InputColumnID">#{Package\Dim_TarjetaCredito\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[IdTarjeta]}</property>
+                          name="InputColumnID">#{Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[IdTarjeta]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1837,7 +1904,85 @@ FROM            Sales.CurrencyRate INNER JOIN
               </outputs>
             </component>
             <component
-              refId="Package\Dim_TarjetaCredito\Destino de OLE DB"
+              refId="Package\Dim_TarjetaPersona\Conversión de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Dim_TarjetaPersona\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_TarjetaPersona\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="Sexo"
+                      lineageId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Sexo]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_TarjetaPersona\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Dim_TarjetaPersona\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_TarjetaPersona\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Sex]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="6"
+                      lineageId="Package\Dim_TarjetaPersona\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Sex]"
+                      name="Sex"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Sexo]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dim_TarjetaPersona\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Dim_TarjetaPersona\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_TarjetaPersona\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_TarjetaPersona\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_TarjetaPersona\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_TarjetaPersona\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_TarjetaPersona\Destino de OLE DB"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
               description="Destino de OLE DB"
@@ -1852,7 +1997,7 @@ FROM            Sales.CurrencyRate INNER JOIN
                 <property
                   dataType="System.String"
                   description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
-                  name="OpenRowset">[dbo].[Dim_TarjetaCredito]</property>
+                  name="OpenRowset">[dbo].[Dim_TarjetaPersona]</property>
                 <property
                   dataType="System.String"
                   description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
@@ -1894,7 +2039,7 @@ FROM            Sales.CurrencyRate INNER JOIN
               </properties>
               <connections>
                 <connection
-                  refId="Package\Dim_TarjetaCredito\Destino de OLE DB.Connections[OleDbConnection]"
+                  refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[localhost.DataWarehouse]"
                   connectionManagerRefId="Package.ConnectionManagers[localhost.DataWarehouse]"
                   description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
@@ -1902,59 +2047,93 @@ FROM            Sales.CurrencyRate INNER JOIN
               </connections>
               <inputs>
                 <input
-                  refId="Package\Dim_TarjetaCredito\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                  refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
                   errorOrTruncationOperation="Insertar"
-                  errorRowDisposition="FailComponent"
+                  errorRowDisposition="IgnoreFailure"
                   hasSideEffects="true"
                   name="Entrada de destino de OLE DB">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_TarjetaCredito\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CreditCardID]"
+                      refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CreditCardID]"
                       cachedDataType="i4"
                       cachedName="CreditCardID"
                       cachedSortKeyPosition="1"
-                      externalMetadataColumnId="Package\Dim_TarjetaCredito\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdTarjeta]"
-                      lineageId="Package\Dim_TarjetaCredito\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CreditCardID]" />
+                      externalMetadataColumnId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdTarjeta]"
+                      lineageId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CreditCardID]" />
                     <inputColumn
-                      refId="Package\Dim_TarjetaCredito\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CardType]"
+                      refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CardType]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="CardType"
-                      externalMetadataColumnId="Package\Dim_TarjetaCredito\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoTarjeta]"
-                      lineageId="Package\Dim_TarjetaCredito\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CardType]" />
+                      externalMetadataColumnId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoTarjeta]"
+                      lineageId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CardType]" />
+                    <inputColumn
+                      refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[ExpYear]"
+                      cachedDataType="i2"
+                      cachedName="ExpYear"
+                      externalMetadataColumnId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaExp]"
+                      lineageId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[ExpYear]" />
+                    <inputColumn
+                      refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[PersonType]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="PersonType"
+                      externalMetadataColumnId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoPersona]"
+                      lineageId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[PersonType]" />
+                    <inputColumn
+                      refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Sex]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Sex"
+                      externalMetadataColumnId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sexo]"
+                      lineageId="Package\Dim_TarjetaPersona\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Sex]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Dim_TarjetaCredito\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdTarjeta]"
+                      refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdTarjeta]"
                       dataType="i4"
                       name="IdTarjeta" />
                     <externalMetadataColumn
-                      refId="Package\Dim_TarjetaCredito\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoTarjeta]"
+                      refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sexo]"
+                      dataType="wstr"
+                      length="20"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoTarjeta]"
                       dataType="wstr"
                       length="50"
                       name="TipoTarjeta" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaExp]"
+                      dataType="i4"
+                      name="FechaExp" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoPersona]"
+                      dataType="wstr"
+                      length="2"
+                      name="TipoPersona" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Dim_TarjetaCredito\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
+                  refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Salida de error de destino de OLE DB"
-                  synchronousInputId="Package\Dim_TarjetaCredito\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
+                  synchronousInputId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      lineageId="Package\Dim_TarjetaPersona\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      refId="Package\Dim_TarjetaPersona\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      lineageId="Package\Dim_TarjetaPersona\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1963,7 +2142,7 @@ FROM            Sales.CurrencyRate INNER JOIN
               </outputs>
             </component>
             <component
-              refId="Package\Dim_TarjetaCredito\División condicional"
+              refId="Package\Dim_TarjetaPersona\División condicional"
               componentClassID="Microsoft.ConditionalSplit"
               contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
               description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
@@ -1971,35 +2150,35 @@ FROM            Sales.CurrencyRate INNER JOIN
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Dim_TarjetaCredito\División condicional.Inputs[Entrada de división condicional]"
+                  refId="Package\Dim_TarjetaPersona\División condicional.Inputs[Entrada de división condicional]"
                   description="Entrada en la transformación División condicional"
                   name="Entrada de división condicional">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_TarjetaCredito\División condicional.Inputs[Entrada de división condicional].Columns[IdTarjetaDW]"
+                      refId="Package\Dim_TarjetaPersona\División condicional.Inputs[Entrada de división condicional].Columns[IdTarjetaDW]"
                       cachedDataType="i4"
                       cachedName="IdTarjetaDW"
-                      lineageId="Package\Dim_TarjetaCredito\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[IdTarjetaDW]" />
+                      lineageId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[IdTarjetaDW]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Dim_TarjetaCredito\División condicional.Outputs[Nuevo Registro]"
+                  refId="Package\Dim_TarjetaPersona\División condicional.Outputs[Nuevo Registro]"
                   description="Salida 1 de la transformación División condicional"
                   errorOrTruncationOperation="Cálculo"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Nuevo Registro"
-                  synchronousInputId="Package\Dim_TarjetaCredito\División condicional.Inputs[Entrada de división condicional]"
+                  synchronousInputId="Package\Dim_TarjetaPersona\División condicional.Inputs[Entrada de división condicional]"
                   truncationRowDisposition="FailComponent">
                   <properties>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
-                      name="Expression">[ISNULL](#{Package\Dim_TarjetaCredito\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[IdTarjetaDW]})</property>
+                      name="Expression">[ISNULL](#{Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[IdTarjetaDW]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -2014,11 +2193,11 @@ FROM            Sales.CurrencyRate INNER JOIN
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Dim_TarjetaCredito\División condicional.Outputs[Salida predeterminada de división condicional]"
+                  refId="Package\Dim_TarjetaPersona\División condicional.Outputs[Salida predeterminada de división condicional]"
                   description="Salida predeterminada de la transformación División condicional"
                   exclusionGroup="1"
                   name="Salida predeterminada de división condicional"
-                  synchronousInputId="Package\Dim_TarjetaCredito\División condicional.Inputs[Entrada de división condicional]">
+                  synchronousInputId="Package\Dim_TarjetaPersona\División condicional.Inputs[Entrada de división condicional]">
                   <properties>
                     <property
                       dataType="System.Boolean"
@@ -2027,23 +2206,23 @@ FROM            Sales.CurrencyRate INNER JOIN
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Dim_TarjetaCredito\División condicional.Outputs[Salida de error de división condicional]"
+                  refId="Package\Dim_TarjetaPersona\División condicional.Outputs[Salida de error de división condicional]"
                   description="Salida de error de la transformación División condicional"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Salida de error de división condicional"
-                  synchronousInputId="Package\Dim_TarjetaCredito\División condicional.Inputs[Entrada de división condicional]">
+                  synchronousInputId="Package\Dim_TarjetaPersona\División condicional.Inputs[Entrada de división condicional]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      refId="Package\Dim_TarjetaPersona\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      lineageId="Package\Dim_TarjetaPersona\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      refId="Package\Dim_TarjetaPersona\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      lineageId="Package\Dim_TarjetaPersona\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2052,11 +2231,11 @@ FROM            Sales.CurrencyRate INNER JOIN
               </outputs>
             </component>
             <component
-              refId="Package\Dim_TarjetaCredito\Ordenar CreditCardID"
+              refId="Package\Dim_TarjetaPersona\Ordenar"
               componentClassID="Microsoft.Sort"
               contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
               description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
-              name="Ordenar CreditCardID"
+              name="Ordenar"
               version="1">
               <properties>
                 <property
@@ -2071,14 +2250,14 @@ FROM            Sales.CurrencyRate INNER JOIN
               </properties>
               <inputs>
                 <input
-                  refId="Package\Dim_TarjetaCredito\Ordenar CreditCardID.Inputs[Entrada de ordenación]"
+                  refId="Package\Dim_TarjetaPersona\Ordenar.Inputs[Entrada de ordenación]"
                   name="Entrada de ordenación">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_TarjetaCredito\Ordenar CreditCardID.Inputs[Entrada de ordenación].Columns[CreditCardID]"
+                      refId="Package\Dim_TarjetaPersona\Ordenar.Inputs[Entrada de ordenación].Columns[CreditCardID]"
                       cachedDataType="i4"
                       cachedName="CreditCardID"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CreditCardID]">
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CreditCardID]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -2091,11 +2270,62 @@ FROM            Sales.CurrencyRate INNER JOIN
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Dim_TarjetaCredito\Ordenar CreditCardID.Inputs[Entrada de ordenación].Columns[CardType]"
+                      refId="Package\Dim_TarjetaPersona\Ordenar.Inputs[Entrada de ordenación].Columns[CardType]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="CardType"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CardType]">
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CardType]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_TarjetaPersona\Ordenar.Inputs[Entrada de ordenación].Columns[Sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="Sexo"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[Sexo]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_TarjetaPersona\Ordenar.Inputs[Entrada de ordenación].Columns[PersonType]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="PersonType"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[PersonType]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_TarjetaPersona\Ordenar.Inputs[Entrada de ordenación].Columns[ExpYear]"
+                      cachedDataType="i2"
+                      cachedName="ExpYear"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[ExpYear]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -2113,14 +2343,14 @@ FROM            Sales.CurrencyRate INNER JOIN
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Dim_TarjetaCredito\Ordenar CreditCardID.Outputs[Salida de ordenación]"
+                  refId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación]"
                   isSorted="true"
                   name="Salida de ordenación">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Ordenar CreditCardID.Outputs[Salida de ordenación].Columns[CreditCardID]"
+                      refId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[CreditCardID]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\Ordenar CreditCardID.Outputs[Salida de ordenación].Columns[CreditCardID]"
+                      lineageId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[CreditCardID]"
                       name="CreditCardID"
                       sortKeyPosition="1">
                       <properties>
@@ -2128,21 +2358,63 @@ FROM            Sales.CurrencyRate INNER JOIN
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
-                          name="SortColumnId">#{Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CreditCardID]}</property>
+                          name="SortColumnId">#{Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CreditCardID]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Ordenar CreditCardID.Outputs[Salida de ordenación].Columns[CardType]"
+                      refId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[CardType]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Dim_TarjetaCredito\Ordenar CreditCardID.Outputs[Salida de ordenación].Columns[CardType]"
+                      lineageId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[CardType]"
                       name="CardType">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
-                          name="SortColumnId">#{Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CardType]}</property>
+                          name="SortColumnId">#{Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CardType]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      lineageId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[Sexo]"
+                      name="Sexo">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[Sexo]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[PersonType]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[PersonType]"
+                      name="PersonType">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[PersonType]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[ExpYear]"
+                      dataType="i2"
+                      lineageId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación].Columns[ExpYear]"
+                      name="ExpYear">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[ExpYear]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -2151,7 +2423,7 @@ FROM            Sales.CurrencyRate INNER JOIN
               </outputs>
             </component>
             <component
-              refId="Package\Dim_TarjetaCredito\Ordenar por IdTarjeta"
+              refId="Package\Dim_TarjetaPersona\Ordenar por IdTarjeta"
               componentClassID="Microsoft.Sort"
               contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
               description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
@@ -2170,14 +2442,14 @@ FROM            Sales.CurrencyRate INNER JOIN
               </properties>
               <inputs>
                 <input
-                  refId="Package\Dim_TarjetaCredito\Ordenar por IdTarjeta.Inputs[Entrada de ordenación]"
+                  refId="Package\Dim_TarjetaPersona\Ordenar por IdTarjeta.Inputs[Entrada de ordenación]"
                   name="Entrada de ordenación">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_TarjetaCredito\Ordenar por IdTarjeta.Inputs[Entrada de ordenación].Columns[IdTarjeta]"
+                      refId="Package\Dim_TarjetaPersona\Ordenar por IdTarjeta.Inputs[Entrada de ordenación].Columns[IdTarjeta]"
                       cachedDataType="i4"
                       cachedName="IdTarjeta"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].Columns[IdTarjeta]">
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].Columns[IdTarjeta]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -2195,14 +2467,14 @@ FROM            Sales.CurrencyRate INNER JOIN
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Dim_TarjetaCredito\Ordenar por IdTarjeta.Outputs[Salida de ordenación]"
+                  refId="Package\Dim_TarjetaPersona\Ordenar por IdTarjeta.Outputs[Salida de ordenación]"
                   isSorted="true"
                   name="Salida de ordenación">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Ordenar por IdTarjeta.Outputs[Salida de ordenación].Columns[IdTarjeta]"
+                      refId="Package\Dim_TarjetaPersona\Ordenar por IdTarjeta.Outputs[Salida de ordenación].Columns[IdTarjeta]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\Ordenar por IdTarjeta.Outputs[Salida de ordenación].Columns[IdTarjeta]"
+                      lineageId="Package\Dim_TarjetaPersona\Ordenar por IdTarjeta.Outputs[Salida de ordenación].Columns[IdTarjeta]"
                       name="IdTarjeta"
                       sortKeyPosition="1">
                       <properties>
@@ -2210,7 +2482,7 @@ FROM            Sales.CurrencyRate INNER JOIN
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
-                          name="SortColumnId">#{Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].Columns[IdTarjeta]}</property>
+                          name="SortColumnId">#{Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].Columns[IdTarjeta]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -2219,7 +2491,7 @@ FROM            Sales.CurrencyRate INNER JOIN
               </outputs>
             </component>
             <component
-              refId="Package\Dim_TarjetaCredito\Tarjetas Credito DW"
+              refId="Package\Dim_TarjetaPersona\Tarjetas Credito DW"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
               description="Origen de OLE DB"
@@ -2234,7 +2506,7 @@ FROM            Sales.CurrencyRate INNER JOIN
                 <property
                   dataType="System.String"
                   description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
-                  name="OpenRowset">[dbo].[Dim_TarjetaCredito]</property>
+                  name="OpenRowset">[dbo].[Dim_TarjetaPersona]</property>
                 <property
                   dataType="System.String"
                   description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
@@ -2268,7 +2540,7 @@ FROM            Sales.CurrencyRate INNER JOIN
               </properties>
               <connections>
                 <connection
-                  refId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Connections[OleDbConnection]"
+                  refId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[localhost.DataWarehouse]"
                   connectionManagerRefId="Package.ConnectionManagers[localhost.DataWarehouse]"
                   description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
@@ -2276,52 +2548,66 @@ FROM            Sales.CurrencyRate INNER JOIN
               </connections>
               <outputs>
                 <output
-                  refId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB]"
+                  refId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB]"
                   name="Salida de origen de OLE DB">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].Columns[IdTarjeta]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].Columns[IdTarjeta]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].ExternalColumns[IdTarjeta]"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].Columns[IdTarjeta]"
+                      externalMetadataColumnId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].ExternalColumns[IdTarjeta]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].Columns[IdTarjeta]"
                       name="IdTarjeta"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].ExternalColumns[IdTarjeta]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].ExternalColumns[IdTarjeta]"
                       dataType="i4"
                       name="IdTarjeta" />
                     <externalMetadataColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].ExternalColumns[TipoTarjeta]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].ExternalColumns[TipoTarjeta]"
                       dataType="wstr"
                       length="50"
                       name="TipoTarjeta" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].ExternalColumns[Sexo]"
+                      dataType="wstr"
+                      length="20"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].ExternalColumns[FechaExp]"
+                      dataType="i4"
+                      name="FechaExp" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB].ExternalColumns[TipoPersona]"
+                      dataType="wstr"
+                      length="2"
+                      name="TipoPersona" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB]"
+                  refId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB]"
                   isErrorOut="true"
                   name="Salida de error de origen de OLE DB">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB].Columns[IdTarjeta]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB].Columns[IdTarjeta]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB].Columns[IdTarjeta]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB].Columns[IdTarjeta]"
                       name="IdTarjeta" />
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2330,7 +2616,7 @@ FROM            Sales.CurrencyRate INNER JOIN
               </outputs>
             </component>
             <component
-              refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen"
+              refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
               description="Origen de OLE DB"
@@ -2381,7 +2667,7 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
               </properties>
               <connections>
                 <connection
-                  refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Connections[OleDbConnection]"
+                  refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
                   description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
@@ -2389,119 +2675,133 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
               </connections>
               <outputs>
                 <output
-                  refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB]"
+                  refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB]"
                   name="Salida de origen de OLE DB">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CreditCardID]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CreditCardID]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[CreditCardID]"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CreditCardID]"
+                      externalMetadataColumnId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[CreditCardID]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CreditCardID]"
                       name="CreditCardID"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CardType]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CardType]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[CardType]"
+                      externalMetadataColumnId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[CardType]"
                       length="50"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CardType]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[CardType]"
                       name="CardType"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[Sexo]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[Sexo]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[Sexo]"
+                      externalMetadataColumnId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[Sexo]"
                       length="6"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[Sexo]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[Sexo]"
                       name="Sexo"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[PersonType]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[PersonType]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[PersonType]"
+                      externalMetadataColumnId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[PersonType]"
                       length="2"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[PersonType]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[PersonType]"
                       name="PersonType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[ExpYear]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[ExpYear]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].Columns[ExpYear]"
+                      name="ExpYear"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[CreditCardID]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[CreditCardID]"
                       dataType="i4"
                       name="CreditCardID" />
                     <externalMetadataColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[CardType]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[CardType]"
                       dataType="wstr"
                       length="50"
                       name="CardType" />
                     <externalMetadataColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[ExpYear]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[ExpYear]"
                       dataType="i2"
                       name="ExpYear" />
                     <externalMetadataColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[Sexo]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[Sexo]"
                       codePage="1252"
                       dataType="str"
                       length="6"
                       name="Sexo" />
                     <externalMetadataColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[PersonType]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB].ExternalColumns[PersonType]"
                       dataType="wstr"
                       length="2"
                       name="PersonType" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB]"
+                  refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB]"
                   isErrorOut="true"
                   name="Salida de error de origen de OLE DB">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[CreditCardID]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[CreditCardID]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[CreditCardID]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[CreditCardID]"
                       name="CreditCardID" />
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[Sexo]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[Sexo]"
                       codePage="1252"
                       dataType="str"
                       length="6"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[Sexo]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[Sexo]"
                       name="Sexo" />
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[CardType]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[CardType]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[CardType]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[CardType]"
                       name="CardType" />
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[PersonType]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[PersonType]"
                       dataType="wstr"
                       length="2"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[PersonType]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[PersonType]"
                       name="PersonType" />
                     <outputColumn
-                      refId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[ExpYear]"
+                      dataType="i2"
+                      lineageId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de error de origen de OLE DB].Columns[ExpYear]"
+                      name="ExpYear" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -2510,35 +2810,40 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
           </components>
           <paths>
             <path
-              refId="Package\Dim_TarjetaCredito.Paths[Nuevo Registro]"
-              endId="Package\Dim_TarjetaCredito\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+              refId="Package\Dim_TarjetaPersona.Paths[Nuevo Registro]"
+              endId="Package\Dim_TarjetaPersona\Conversión de datos.Inputs[Entrada de conversión de datos]"
               name="Nuevo Registro"
-              startId="Package\Dim_TarjetaCredito\División condicional.Outputs[Nuevo Registro]" />
+              startId="Package\Dim_TarjetaPersona\División condicional.Outputs[Nuevo Registro]" />
             <path
-              refId="Package\Dim_TarjetaCredito.Paths[Salida de combinación de mezcla]"
-              endId="Package\Dim_TarjetaCredito\División condicional.Inputs[Entrada de división condicional]"
+              refId="Package\Dim_TarjetaPersona.Paths[Salida de combinación de mezcla]"
+              endId="Package\Dim_TarjetaPersona\División condicional.Inputs[Entrada de división condicional]"
               name="Salida de combinación de mezcla"
-              startId="Package\Dim_TarjetaCredito\Combinación de mezcla.Outputs[Salida de combinación de mezcla]" />
+              startId="Package\Dim_TarjetaPersona\Combinación de mezcla.Outputs[Salida de combinación de mezcla]" />
             <path
-              refId="Package\Dim_TarjetaCredito.Paths[Salida de ordenación]"
-              endId="Package\Dim_TarjetaCredito\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+              refId="Package\Dim_TarjetaPersona.Paths[Salida de conversión de datos]"
+              endId="Package\Dim_TarjetaPersona\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de conversión de datos"
+              startId="Package\Dim_TarjetaPersona\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Dim_TarjetaPersona.Paths[Salida de ordenación]"
+              endId="Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
               name="Salida de ordenación"
-              startId="Package\Dim_TarjetaCredito\Ordenar CreditCardID.Outputs[Salida de ordenación]" />
+              startId="Package\Dim_TarjetaPersona\Ordenar por IdTarjeta.Outputs[Salida de ordenación]" />
             <path
-              refId="Package\Dim_TarjetaCredito.Paths[Salida de ordenación1]"
-              endId="Package\Dim_TarjetaCredito\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+              refId="Package\Dim_TarjetaPersona.Paths[Salida de ordenación1]"
+              endId="Package\Dim_TarjetaPersona\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
               name="Salida de ordenación"
-              startId="Package\Dim_TarjetaCredito\Ordenar por IdTarjeta.Outputs[Salida de ordenación]" />
+              startId="Package\Dim_TarjetaPersona\Ordenar.Outputs[Salida de ordenación]" />
             <path
-              refId="Package\Dim_TarjetaCredito.Paths[Salida de origen de OLE DB]"
-              endId="Package\Dim_TarjetaCredito\Ordenar CreditCardID.Inputs[Entrada de ordenación]"
+              refId="Package\Dim_TarjetaPersona.Paths[Salida de origen de OLE DB]"
+              endId="Package\Dim_TarjetaPersona\Ordenar por IdTarjeta.Inputs[Entrada de ordenación]"
               name="Salida de origen de OLE DB"
-              startId="Package\Dim_TarjetaCredito\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB]" />
+              startId="Package\Dim_TarjetaPersona\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB]" />
             <path
-              refId="Package\Dim_TarjetaCredito.Paths[Salida de origen de OLE DB1]"
-              endId="Package\Dim_TarjetaCredito\Ordenar por IdTarjeta.Inputs[Entrada de ordenación]"
+              refId="Package\Dim_TarjetaPersona.Paths[Salida de origen de OLE DB1]"
+              endId="Package\Dim_TarjetaPersona\Ordenar.Inputs[Entrada de ordenación]"
               name="Salida de origen de OLE DB"
-              startId="Package\Dim_TarjetaCredito\Tarjetas Credito DW.Outputs[Salida de origen de OLE DB]" />
+              startId="Package\Dim_TarjetaPersona\Tarjetas Credito Origen.Outputs[Salida de origen de OLE DB]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -3477,165 +3782,6 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
           version="1">
           <components>
             <component
-              refId="Package\H_Ventas\Búsqueda Moneda"
-              componentClassID="Microsoft.Lookup"
-              contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
-              description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
-              name="Búsqueda Moneda"
-              usesDispositions="true"
-              version="6">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Especifica la instrucción SQL que genera la tabla de búsqueda."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [Sales].[CurrencyRate]</property>
-                <property
-                  dataType="System.String"
-                  description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
-                  expressionType="Notify"
-                  name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [Sales].[CurrencyRate]) [refTable]
-where [refTable].[CurrencyRateID] = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
-                  name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifica el tipo de caché de la tabla de búsqueda."
-                  name="CacheType"
-                  typeConverter="CacheType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
-                  name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
-                  name="NoMatchCachePercentage">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
-                  name="MaxMemoryUsage">25</property>
-                <property
-                  dataType="System.Int64"
-                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
-                  name="MaxMemoryUsage64">25</property>
-                <property
-                  dataType="System.String"
-                  description="Indica si se debe hacer referencia a metadatos en formato XML."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CurrencyRateID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CurrencyRateDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FromCurrencyCode" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ToCurrencyCode" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AverageRate" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EndOfDayRate" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ModifiedDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
-                <property
-                  containsID="true"
-                  dataType="System.String"
-                  description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
-                  name="ParameterMap">#{Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[CurrencyRateID]};</property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
-                  name="TreatDuplicateKeysAsError">false</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\H_Ventas\Búsqueda Moneda.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.AdventureWorks2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.AdventureWorks2017]"
-                  description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\H_Ventas\Búsqueda Moneda.Inputs[Entrada de búsqueda]"
-                  name="Entrada de búsqueda">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\H_Ventas\Búsqueda Moneda.Inputs[Entrada de búsqueda].Columns[CurrencyRateID]"
-                      cachedDataType="i4"
-                      cachedName="CurrencyRateID"
-                      lineageId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[CurrencyRateID]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Especifica la columna de la tabla de referencia con la que se combina una columna."
-                          name="JoinToReferenceColumn">CurrencyRateID</property>
-                        <property
-                          dataType="System.Null"
-                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\H_Ventas\Búsqueda Moneda.Outputs[Salida de entradas coincidentes de búsqueda]"
-                  errorOrTruncationOperation="Búsqueda"
-                  errorRowDisposition="IgnoreFailure"
-                  exclusionGroup="1"
-                  name="Salida de entradas coincidentes de búsqueda"
-                  synchronousInputId="Package\H_Ventas\Búsqueda Moneda.Inputs[Entrada de búsqueda]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\H_Ventas\Búsqueda Moneda.Outputs[Salida de entradas coincidentes de búsqueda].Columns[ToCurrencyCode]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Copiar columna"
-                      length="3"
-                      lineageId="Package\H_Ventas\Búsqueda Moneda.Outputs[Salida de entradas coincidentes de búsqueda].Columns[ToCurrencyCode]"
-                      name="ToCurrencyCode"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
-                          name="CopyFromReferenceColumn">ToCurrencyCode</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\H_Ventas\Búsqueda Moneda.Outputs[Salida de entradas no coincidentes de búsqueda]"
-                  description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en 'Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes'."
-                  exclusionGroup="1"
-                  name="Salida de entradas no coincidentes de búsqueda"
-                  synchronousInputId="Package\H_Ventas\Búsqueda Moneda.Inputs[Entrada de búsqueda]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\H_Ventas\Búsqueda Moneda.Outputs[Salida de error de búsqueda]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Salida de error de búsqueda"
-                  synchronousInputId="Package\H_Ventas\Búsqueda Moneda.Inputs[Entrada de búsqueda]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\H_Ventas\Búsqueda Moneda.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\H_Ventas\Búsqueda Moneda.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\H_Ventas\Búsqueda Moneda.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\H_Ventas\Búsqueda Moneda.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\H_Ventas\Destino de OLE DB"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
@@ -3685,7 +3831,7 @@ where [refTable].[CurrencyRateID] = ?</property>
                 <property
                   dataType="System.String"
                   description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                  name="FastLoadOptions">TABLOCK</property>
                 <property
                   dataType="System.Int32"
                   description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
@@ -3762,12 +3908,11 @@ where [refTable].[CurrencyRateID] = ?</property>
                       externalMetadataColumnId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Total]"
                       lineageId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[TotalDue]" />
                     <inputColumn
-                      refId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[ToCurrencyCode]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="ToCurrencyCode"
-                      externalMetadataColumnId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CodigoMoneda]"
-                      lineageId="Package\H_Ventas\Búsqueda Moneda.Outputs[Salida de entradas coincidentes de búsqueda].Columns[ToCurrencyCode]" />
+                      refId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CurrencyRateID]"
+                      cachedDataType="i4"
+                      cachedName="CurrencyRateID"
+                      externalMetadataColumnId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TasaCambioID]"
+                      lineageId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[CurrencyRateID]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3788,11 +3933,6 @@ where [refTable].[CurrencyRateID] = ?</property>
                       dataType="i4"
                       name="IdTerritorio" />
                     <externalMetadataColumn
-                      refId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CodigoMoneda]"
-                      dataType="wstr"
-                      length="3"
-                      name="CodigoMoneda" />
-                    <externalMetadataColumn
                       refId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaOrden]"
                       dataType="dbTimeStamp"
                       name="FechaOrden" />
@@ -3812,6 +3952,10 @@ where [refTable].[CurrencyRateID] = ?</property>
                       refId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Total]"
                       dataType="i4"
                       name="Total" />
+                    <externalMetadataColumn
+                      refId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TasaCambioID]"
+                      dataType="i4"
+                      name="TasaCambioID" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -4181,13 +4325,8 @@ where [refTable].[CurrencyRateID] = ?</property>
           </components>
           <paths>
             <path
-              refId="Package\H_Ventas.Paths[Salida de entradas coincidentes de búsqueda]"
-              endId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
-              name="Salida de entradas coincidentes de búsqueda"
-              startId="Package\H_Ventas\Búsqueda Moneda.Outputs[Salida de entradas coincidentes de búsqueda]" />
-            <path
               refId="Package\H_Ventas.Paths[Salida de origen de OLE DB]"
-              endId="Package\H_Ventas\Búsqueda Moneda.Inputs[Entrada de búsqueda]"
+              endId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
               name="Salida de origen de OLE DB"
               startId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB]" />
           </paths>
@@ -4200,7 +4339,7 @@ where [refTable].[CurrencyRateID] = ?</property>
       DTS:refId="Package.PrecedenceConstraints[Restricción]"
       DTS:CreationName=""
       DTS:DTSID="{8F8BAB73-1B42-4EAE-B2F0-EAF345B0EDD6}"
-      DTS:From="Package\Dim_TarjetaCredito"
+      DTS:From="Package\Dim_TarjetaPersona"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restricción"
       DTS:To="Package\Dim_MetodoEnvio" />
@@ -4219,7 +4358,7 @@ where [refTable].[CurrencyRateID] = ?</property>
       DTS:From="Package\Eliminar Datos Hecho"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restricción 2"
-      DTS:To="Package\Dim_TarjetaCredito" />
+      DTS:To="Package\Dim_TarjetaPersona" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
       DTS:CreationName=""
@@ -4250,34 +4389,38 @@ where [refTable].[CurrencyRateID] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="164,42"
+          Id="Package\Dim_MetodoEnvio"
+          TopLeft="264,229" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Dim_Moneda"
+          TopLeft="434.5,419.25" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Dim_TarjetaPersona"
+          TopLeft="149,113" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Dim_Territorio"
+          TopLeft="350,324" />
+        <NodeLayout
           Size="180,42"
           Id="Package\Eliminar Datos Hecho"
           TopLeft="0,21" />
         <NodeLayout
           Size="124,42"
           Id="Package\H_Ventas"
-          TopLeft="526.5,482.25" />
-        <NodeLayout
-          Size="164,42"
-          Id="Package\Dim_MetodoEnvio"
-          TopLeft="264,229" />
-        <NodeLayout
-          Size="170,42"
-          Id="Package\Dim_TarjetaCredito"
-          TopLeft="149,113" />
-        <NodeLayout
-          Size="147,42"
-          Id="Package\Dim_Territorio"
-          TopLeft="336,322" />
+          TopLeft="561.5,513.25" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
-          TopLeft="234,155">
+          TopLeft="236,155">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="112,74"
+              EndConnector="110,74"
               Start="0,0"
-              End="112,66.5">
+              End="110,66.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -4288,13 +4431,13 @@ where [refTable].[CurrencyRateID] = ?</property>
                     Point2="0,37"
                     Point3="4,37" />
                   <mssgle:LineSegment
-                    End="108,37" />
+                    End="106,37" />
                   <mssgle:CubicBezierSegment
-                    Point1="108,37"
-                    Point2="112,37"
-                    Point3="112,41" />
+                    Point1="106,37"
+                    Point2="110,37"
+                    Point3="110,41" />
                   <mssgle:LineSegment
-                    End="112,66.5" />
+                    End="110,66.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4309,26 +4452,26 @@ where [refTable].[CurrencyRateID] = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="63.5,51"
+              EndConnector="77.5,53"
               Start="0,0"
-              End="63.5,43.5">
+              End="77.5,45.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.5" />
+                    End="0,22.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,21.5"
-                    Point2="0,25.5"
-                    Point3="4,25.5" />
+                    Point1="0,22.5"
+                    Point2="0,26.5"
+                    Point3="4,26.5" />
                   <mssgle:LineSegment
-                    End="59.5,25.5" />
+                    End="73.5,26.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="59.5,25.5"
-                    Point2="63.5,25.5"
-                    Point3="63.5,29.5" />
+                    Point1="73.5,26.5"
+                    Point2="77.5,26.5"
+                    Point3="77.5,30.5" />
                   <mssgle:LineSegment
-                    End="63.5,43.5" />
+                    End="77.5,45.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4343,9 +4486,9 @@ where [refTable].[CurrencyRateID] = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="144,50"
+              EndConnector="146,50"
               Start="0,0"
-              End="144,42.5">
+              End="146,42.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -4356,13 +4499,13 @@ where [refTable].[CurrencyRateID] = ?</property>
                     Point2="0,25"
                     Point3="4,25" />
                   <mssgle:LineSegment
-                    End="140,25" />
+                    End="142,25" />
                   <mssgle:CubicBezierSegment
-                    Point1="140,25"
-                    Point2="144,25"
-                    Point3="144,29" />
+                    Point1="142,25"
+                    Point2="146,25"
+                    Point3="146,29" />
                   <mssgle:LineSegment
-                    End="144,42.5" />
+                    End="146,42.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4371,36 +4514,32 @@ where [refTable].[CurrencyRateID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="141,42"
-          Id="Package\Dim_Moneda"
-          TopLeft="378.5,403.25" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 3]"
-          TopLeft="409.5,364">
+          TopLeft="423.5,366">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="39.5,39.25"
+              EndConnector="81.5,53.25"
               Start="0,0"
-              End="39.5,31.75">
+              End="81.5,45.75">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15.625" />
+                    End="0,22.625" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,15.625"
-                    Point2="0,19.625"
-                    Point3="4,19.625" />
+                    Point1="0,22.625"
+                    Point2="0,26.625"
+                    Point3="4,26.625" />
                   <mssgle:LineSegment
-                    End="35.5,19.625" />
+                    End="77.5,26.625" />
                   <mssgle:CubicBezierSegment
-                    Point1="35.5,19.625"
-                    Point2="39.5,19.625"
-                    Point3="39.5,23.625" />
+                    Point1="77.5,26.625"
+                    Point2="81.5,26.625"
+                    Point3="81.5,30.625" />
                   <mssgle:LineSegment
-                    End="39.5,31.75" />
+                    End="81.5,45.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4411,30 +4550,30 @@ where [refTable].[CurrencyRateID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 4]"
-          TopLeft="449,445.25">
+          TopLeft="505,461.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="139.5,37"
+              EndConnector="118.5,52"
               Start="0,0"
-              End="139.5,29.5">
+              End="118.5,44.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.5" />
+                    End="0,22" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,14.5"
-                    Point2="0,18.5"
-                    Point3="4,18.5" />
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="4,26" />
                   <mssgle:LineSegment
-                    End="135.5,18.5" />
+                    End="114.5,26" />
                   <mssgle:CubicBezierSegment
-                    Point1="135.5,18.5"
-                    Point2="139.5,18.5"
-                    Point3="139.5,22.5" />
+                    Point1="114.5,26"
+                    Point2="118.5,26"
+                    Point3="118.5,30" />
                   <mssgle:LineSegment
-                    End="139.5,29.5" />
+                    End="118.5,44.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4446,122 +4585,6 @@ where [refTable].[CurrencyRateID] = ?</property>
       </GraphLayout>
     </LayoutInfo>
   </Package>
-  <TaskHost
-    design-time-name="Package\H_Ventas">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="164,42"
-          Id="Package\H_Ventas\Origen de OLE DB"
-          TopLeft="181,70" />
-        <NodeLayout
-          Size="168,42"
-          Id="Package\H_Ventas\Destino de OLE DB"
-          TopLeft="393,274" />
-        <NodeLayout
-          Size="165,42"
-          Id="Package\H_Ventas\Búsqueda Moneda"
-          TopLeft="342,166" />
-        <EdgeLayout
-          Id="Package\H_Ventas.Paths[Salida de origen de OLE DB]"
-          TopLeft="263,112">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="161.5,54"
-              Start="0,0"
-              End="161.5,46.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,23"
-                    Point2="0,27"
-                    Point3="4,27" />
-                  <mssgle:LineSegment
-                    End="157.5,27" />
-                  <mssgle:CubicBezierSegment
-                    Point1="157.5,27"
-                    Point2="161.5,27"
-                    Point3="161.5,31" />
-                  <mssgle:LineSegment
-                    End="161.5,46.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\H_Ventas.Paths[Salida de entradas coincidentes de búsqueda]"
-          TopLeft="424.5,208">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="52.5,66"
-              Start="0,0"
-              End="52.5,58.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,29" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,29"
-                    Point2="0,33"
-                    Point3="4,33" />
-                  <mssgle:LineSegment
-                    End="48.5,33" />
-                  <mssgle:CubicBezierSegment
-                    Point1="48.5,33"
-                    Point2="52.5,33"
-                    Point3="52.5,37" />
-                  <mssgle:LineSegment
-                    End="52.5,58.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-73.5690234375,38,199.638046875,12.1953125"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\H_Ventas\Destino de OLE DB">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\H_Ventas\Origen de OLE DB">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Dim_MetodoEnvio">
     <LayoutInfo>
@@ -4767,40 +4790,262 @@ where [refTable].[CurrencyRateID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <TaskHost
-    design-time-name="Package\Dim_TarjetaCredito">
+    design-time-name="Package\Dim_Moneda">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Dim_Moneda\Destino de OLE DB"
+          TopLeft="279,461" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Dim_Moneda\Datos Moneda Origen"
+          TopLeft="117,19" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Dim_Moneda\Datos Moneda DW"
+          TopLeft="445,17" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Dim_Moneda\División condicional"
+          TopLeft="281,353" />
+        <EdgeLayout
+          Id="Package\Dim_Moneda.Paths[Nuevo Registro]"
+          TopLeft="364.75,395">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-64.81173828125,23.39404296875,129.6234765625,11.7119140625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="214,42"
+          Id="Package\Dim_Moneda\Ordenar por CurrencyRateID"
+          TopLeft="101,128" />
+        <EdgeLayout
+          Id="Package\Dim_Moneda.Paths[Salida de origen de OLE DB]"
+          TopLeft="207.75,61">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,67"
+              Start="0,0"
+              End="0,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.81947265625,24.85107421875,51.6389453125,9.7978515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Dim_Moneda\Ordenar por TasaCambioID"
+          TopLeft="422,119" />
+        <EdgeLayout
+          Id="Package\Dim_Moneda.Paths[Salida de origen de OLE DB1]"
+          TopLeft="527.25,59">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Dim_Moneda\Combinación de mezcla"
+          TopLeft="275,241" />
+        <EdgeLayout
+          Id="Package\Dim_Moneda.Paths[Salida de ordenación]"
+          TopLeft="208,170">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="131.666666666667,71"
+              Start="0,0"
+              End="131.666666666667,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.2442588726514" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.2442588726514"
+                    Point2="0,42.2442588726514"
+                    Point3="4,42.2442588726514" />
+                  <mssgle:LineSegment
+                    End="127.666666666667,42.2442588726514" />
+                  <mssgle:CubicBezierSegment
+                    Point1="127.666666666667,42.2442588726514"
+                    Point2="131.666666666667,42.2442588726514"
+                    Point3="131.666666666667,46.2442588726514" />
+                  <mssgle:LineSegment
+                    End="131.666666666667,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="40.0138606770833,47.2442588726514,51.6389453125,9.7978515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Moneda.Paths[Salida de ordenación1]"
+          TopLeft="526,161">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-125.666666666667,80"
+              Start="0,0"
+              End="-125.666666666667,72.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5991649269311" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.5991649269311"
+                    Point2="0,47.5991649269311"
+                    Point3="-4,47.5991649269311" />
+                  <mssgle:LineSegment
+                    End="-121.666666666667,47.5991649269311" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-121.666666666667,47.5991649269311"
+                    Point2="-125.666666666667,47.5991649269311"
+                    Point3="-125.666666666667,51.5991649269311" />
+                  <mssgle:LineSegment
+                    End="-125.666666666667,72.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Moneda.Paths[Salida de combinación de mezcla]"
+          TopLeft="368.25,283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70"
+              Start="0,0"
+              End="0,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.81947265625,26.35107421875,51.6389453125,9.7978515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_Moneda\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_Moneda\Datos Moneda Origen">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_Moneda\Datos Moneda DW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Dim_TarjetaPersona">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="183,42"
-          Id="Package\Dim_TarjetaCredito\Ordenar por IdTarjeta"
+          Id="Package\Dim_TarjetaPersona\Ordenar por IdTarjeta"
           TopLeft="518,184" />
         <NodeLayout
           Size="189,42"
-          Id="Package\Dim_TarjetaCredito\Tarjetas Credito Origen"
+          Id="Package\Dim_TarjetaPersona\Tarjetas Credito Origen"
           TopLeft="196,68" />
         <NodeLayout
           Size="174,42"
-          Id="Package\Dim_TarjetaCredito\Tarjetas Credito DW"
+          Id="Package\Dim_TarjetaPersona\Tarjetas Credito DW"
           TopLeft="526,69" />
         <NodeLayout
           Size="171,42"
-          Id="Package\Dim_TarjetaCredito\División condicional"
+          Id="Package\Dim_TarjetaPersona\División condicional"
           TopLeft="377,438" />
-        <NodeLayout
-          Size="190,42"
-          Id="Package\Dim_TarjetaCredito\Combinación de mezcla"
-          TopLeft="371,331" />
-        <NodeLayout
-          Size="181,42"
-          Id="Package\Dim_TarjetaCredito\Ordenar CreditCardID"
-          TopLeft="203,184" />
-        <NodeLayout
-          Size="168,42"
-          Id="Package\Dim_TarjetaCredito\Destino de OLE DB"
-          TopLeft="373,538" />
         <EdgeLayout
-          Id="Package\Dim_TarjetaCredito.Paths[Salida de origen de OLE DB1]"
+          Id="Package\Dim_TarjetaPersona.Paths[Salida de origen de OLE DB]"
           TopLeft="611.25,111">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4821,139 +5066,185 @@ where [refTable].[CurrencyRateID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="117,42"
+          Id="Package\Dim_TarjetaPersona\Ordenar"
+          TopLeft="234,181" />
         <EdgeLayout
-          Id="Package\Dim_TarjetaCredito.Paths[Salida de origen de OLE DB]"
-          TopLeft="292,110">
+          Id="Package\Dim_TarjetaPersona.Paths[Salida de origen de OLE DB1]"
+          TopLeft="291.5,110">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,74"
+              EndConnector="0,71"
               Start="0,0"
-              End="0,66.5">
+              End="0,63.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,66.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_TarjetaCredito.Paths[Salida de ordenación1]"
-          TopLeft="609.5,226">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-113.166666666667,105"
-              Start="0,0"
-              End="-113.166666666667,97.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,58.4739039665971" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,58.4739039665971"
-                    Point2="0,62.4739039665971"
-                    Point3="-4,62.4739039665971" />
-                  <mssgle:LineSegment
-                    End="-109.166666666667,62.4739039665971" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-109.166666666667,62.4739039665971"
-                    Point2="-113.166666666667,62.4739039665971"
-                    Point3="-113.166666666667,66.4739039665971" />
-                  <mssgle:LineSegment
-                    End="-113.166666666667,97.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_TarjetaCredito.Paths[Salida de ordenación]"
-          TopLeft="293.5,226">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="142.166666666667,105"
-              Start="0,0"
-              End="142.166666666667,97.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,58.4739039665971" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,58.4739039665971"
-                    Point2="0,62.4739039665971"
-                    Point3="4,62.4739039665971" />
-                  <mssgle:LineSegment
-                    End="138.166666666667,62.4739039665971" />
-                  <mssgle:CubicBezierSegment
-                    Point1="138.166666666667,62.4739039665971"
-                    Point2="142.166666666667,62.4739039665971"
-                    Point3="142.166666666667,66.4739039665971" />
-                  <mssgle:LineSegment
-                    End="142.166666666667,97.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_TarjetaCredito.Paths[Salida de combinación de mezcla]"
-          TopLeft="464.25,373">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,65"
-              Start="0,0"
-              End="0,57.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,57.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_TarjetaCredito.Paths[Nuevo Registro]"
-          TopLeft="459.75,480">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,58"
-              Start="0,0"
-              End="0,50.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,50.5" />
+                    End="0,63.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-34.07703125,19.5576171875,68.1540625,11.384765625"
+              BoundingBox="-19.15453125,26.85107421875,38.3090625,9.7978515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Dim_TarjetaPersona\Combinación de mezcla"
+          TopLeft="365,326" />
+        <EdgeLayout
+          Id="Package\Dim_TarjetaPersona.Paths[Salida de ordenación]"
+          TopLeft="609.5,226">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-119.166666666667,100"
+              Start="0,0"
+              End="-119.166666666667,92.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.4989561586639" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,55.4989561586639"
+                    Point2="0,59.4989561586639"
+                    Point3="-4,59.4989561586639" />
+                  <mssgle:LineSegment
+                    End="-115.166666666667,59.4989561586639" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-115.166666666667,59.4989561586639"
+                    Point2="-119.166666666667,59.4989561586639"
+                    Point3="-119.166666666667,63.4989561586639" />
+                  <mssgle:LineSegment
+                    End="-119.166666666667,92.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_TarjetaPersona.Paths[Salida de combinación de mezcla]"
+          TopLeft="461.25,368">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70"
+              Start="0,0"
+              End="0,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-19.15453125,26.35107421875,38.3090625,9.7978515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Dim_TarjetaPersona\Conversión de datos"
+          TopLeft="380,539" />
+        <EdgeLayout
+          Id="Package\Dim_TarjetaPersona.Paths[Salida de ordenación1]"
+          TopLeft="292.5,223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="137.166666666667,103"
+              Start="0,0"
+              End="137.166666666667,95.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.2839248434238" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,57.2839248434238"
+                    Point2="0,61.2839248434238"
+                    Point3="4,61.2839248434238" />
+                  <mssgle:LineSegment
+                    End="133.166666666667,61.2839248434238" />
+                  <mssgle:CubicBezierSegment
+                    Point1="133.166666666667,61.2839248434238"
+                    Point2="137.166666666667,61.2839248434238"
+                    Point3="137.166666666667,65.2839248434238" />
+                  <mssgle:LineSegment
+                    End="137.166666666667,95.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="49.4288020833333,66.2839248434238,38.3090625,9.7978515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_TarjetaPersona.Paths[Nuevo Registro]"
+          TopLeft="465,480">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-57.83673828125,19.89404296875,115.6734765625,11.7119140625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Dim_TarjetaPersona\Destino de OLE DB"
+          TopLeft="379,643" />
+        <EdgeLayout
+          Id="Package\Dim_TarjetaPersona.Paths[Salida de conversión de datos]"
+          TopLeft="465.25,581">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-19.15453125,22.35107421875,38.3090625,9.7978515625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4961,10 +5252,23 @@ where [refTable].[CurrencyRateID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Dim_TarjetaCredito\Tarjetas Credito Origen">
+    design-time-name="Package\Dim_TarjetaPersona\Tarjetas Credito Origen">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_TarjetaPersona\Tarjetas Credito DW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -5020,9 +5324,7 @@ where [refTable].[CurrencyRateID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5045,7 +5347,7 @@ where [refTable].[CurrencyRateID] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
+              BoundingBox="-16.11447265625,38.35107421875,32.2289453125,9.7978515625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5080,9 +5382,7 @@ where [refTable].[CurrencyRateID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5117,7 +5417,7 @@ where [refTable].[CurrencyRateID] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
+              BoundingBox="57.4688606770835,52.5991649269311,32.2289453125,9.7978515625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5141,7 +5441,7 @@ where [refTable].[CurrencyRateID] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
+              BoundingBox="-16.11447265625,14.85107421875,32.2289453125,9.7978515625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5165,7 +5465,7 @@ where [refTable].[CurrencyRateID] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-34.07703125,25.0576171875,68.1540625,11.384765625"
+              BoundingBox="-55.10673828125,24.89404296875,110.2134765625,11.7119140625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5173,195 +5473,51 @@ where [refTable].[CurrencyRateID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <TaskHost
-    design-time-name="Package\Dim_Moneda">
+    design-time-name="Package\H_Ventas">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Dim_Moneda\División condicional"
-          TopLeft="257,317" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="168,42"
-          Id="Package\Dim_Moneda\Destino de OLE DB"
-          TopLeft="261,402" />
+          Id="Package\H_Ventas\Destino de OLE DB"
+          TopLeft="393,274" />
         <NodeLayout
-          Size="193,42"
-          Id="Package\Dim_Moneda\Ordenar por CurrencyID"
-          TopLeft="110,128" />
-        <NodeLayout
-          Size="186,42"
-          Id="Package\Dim_Moneda\Ordenar por IdMoneda"
-          TopLeft="426,131" />
-        <NodeLayout
-          Size="181,42"
-          Id="Package\Dim_Moneda\Datos Moneda Origen"
-          TopLeft="120,29" />
-        <NodeLayout
-          Size="190,42"
-          Id="Package\Dim_Moneda\Combinación de mezcla"
-          TopLeft="247,228" />
-        <NodeLayout
-          Size="167,42"
-          Id="Package\Dim_Moneda\Datos Moneda DW"
-          TopLeft="429,31" />
+          Size="164,42"
+          Id="Package\H_Ventas\Origen de OLE DB"
+          TopLeft="181,70" />
         <EdgeLayout
-          Id="Package\Dim_Moneda.Paths[Salida de origen de OLE DB1]"
-          TopLeft="515.75,73">
+          Id="Package\H_Ventas.Paths[Salida de origen de OLE DB]"
+          TopLeft="263,112">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,58"
+              EndConnector="214,162"
               Start="0,0"
-              End="0,50.5">
+              End="214,154.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,50.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_Moneda.Paths[Salida de origen de OLE DB]"
-          TopLeft="208.5,71">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,57"
-              Start="0,0"
-              End="0,49.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
+                    End="0,77" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,77"
+                    Point2="0,81"
+                    Point3="4,81" />
                   <mssgle:LineSegment
-                    End="0,49.5" />
+                    End="210,81" />
+                  <mssgle:CubicBezierSegment
+                    Point1="210,81"
+                    Point2="214,81"
+                    Point3="214,85" />
+                  <mssgle:LineSegment
+                    End="214,154.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-8,16.75,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_Moneda.Paths[Salida de ordenación1]"
-          TopLeft="519,173">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-146.666666666667,55"
-              Start="0,0"
-              End="-146.666666666667,47.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,28.7244258872651" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,28.7244258872651"
-                    Point2="0,32.7244258872651"
-                    Point3="-4,32.7244258872651" />
-                  <mssgle:LineSegment
-                    End="-142.666666666667,32.7244258872651" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-142.666666666667,32.7244258872651"
-                    Point2="-146.666666666667,32.7244258872651"
-                    Point3="-146.666666666667,36.7244258872651" />
-                  <mssgle:LineSegment
-                    End="-146.666666666667,47.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_Moneda.Paths[Salida de ordenación]"
-          TopLeft="206.5,170">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="105.166666666667,58"
-              Start="0,0"
-              End="105.166666666667,50.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.5093945720251" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,30.5093945720251"
-                    Point2="0,34.5093945720251"
-                    Point3="4,34.5093945720251" />
-                  <mssgle:LineSegment
-                    End="101.166666666667,34.5093945720251" />
-                  <mssgle:CubicBezierSegment
-                    Point1="101.166666666667,34.5093945720251"
-                    Point2="105.166666666667,34.5093945720251"
-                    Point3="105.166666666667,38.5093945720251" />
-                  <mssgle:LineSegment
-                    End="105.166666666667,50.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_Moneda.Paths[Salida de combinación de mezcla]"
-          TopLeft="342.25,270">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,47"
-              Start="0,0"
-              End="0,39.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,39.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_Moneda.Paths[Nuevo Registro]"
-          TopLeft="343.75,359">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43"
-              Start="0,0"
-              End="0,35.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-34.07703125,12.0576171875,68.1540625,11.384765625"
+              BoundingBox="83.52234375,86,46.9553125,9.7978515625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5369,33 +5525,41 @@ where [refTable].[CurrencyRateID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Dim_Moneda\Datos Moneda Origen">
+    design-time-name="Package\H_Ventas\Destino de OLE DB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\H_Ventas\Búsqueda Moneda">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[Sales].[CurrencyRate]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q2:string">Table</Value>
       </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\H_Ventas\Origen de OLE DB">
+    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_TarjetaPersona\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
