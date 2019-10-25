@@ -94,3 +94,6 @@ GO
 ALTER TABLE [H_Ventas]
 ADD CONSTRAINT [FK_FECHAORDEN_VENTAS] FOREIGN KEY([FechaOrden]) REFERENCES [Dim_Tiempo] ([Fecha])
 GO
+
+INSERT INTO [Dim_Moneda]
+VALUES(0,'NIN','Ninguno')
