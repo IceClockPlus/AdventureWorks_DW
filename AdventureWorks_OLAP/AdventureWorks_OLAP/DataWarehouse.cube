@@ -1,0 +1,265 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="91427074-7648-41d8-9bcc-183e6eac5289" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>DataWarehouse</ID>
+  <Name>DataWarehouse</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="b30a0652-efba-4357-87a4-607b4e609191">
+      <ID>Dim Territorio</ID>
+      <Name>Dim Territorio</Name>
+      <DimensionID>Dim Territorio</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="7dfdd70d-b60a-40b4-aea0-a65db30b9aba">
+          <AttributeID>Id Territorio</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="1c801c15-482e-4dcc-b6db-48bf5e86ea99">
+      <ID>Dim Tarjeta Persona</ID>
+      <Name>Dim Tarjeta Persona</Name>
+      <DimensionID>Dim Tarjeta Persona</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="80c61b57-57d7-45d6-8cdb-5bdd459a3821">
+          <AttributeID>Id Tarjeta</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="1d354369-c7d6-452f-b25b-2eb88241d3dc">
+      <ID>Dim Moneda</ID>
+      <Name>Dim Moneda</Name>
+      <DimensionID>Dim Moneda</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="fd553ad1-08de-4f15-84bc-5cce6713d573">
+          <AttributeID>Tasa Cambio ID</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="8b476613-2efa-4cec-8104-f06e9ae234b1">
+      <ID>Dim Metodo Envio</ID>
+      <Name>Dim Metodo Envio</Name>
+      <DimensionID>Dim Metodo Envio</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="22d28f91-d2a0-41be-9891-ba21c63e52a5">
+          <AttributeID>Id Metodo Envio</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="d8ddac71-a9af-4c6d-adf2-fabbb49b95c3">
+      <ID>Dim Tiempo</ID>
+      <Name>Dim Tiempo</Name>
+      <DimensionID>Dim Tiempo</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="9785e642-5abd-40a5-adbe-4dd291d2444c">
+          <AttributeID>Fecha</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+  </Dimensions>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="0b9d6bb9-c4f7-45ae-880b-aca5089af72e">
+      <ID>H Ventas</ID>
+      <Name>H Ventas</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="75575041-4f81-4a13-b266-0ac203b45cb8">
+          <ID>Subtotal</ID>
+          <Name>Subtotal</Name>
+          <Source dwd:design-time-name="db2d2628-7c79-4aef-9d31-f3bcc78d9001">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="5f9ee52b-c123-45bc-ab7d-91f6bdb585a1">
+              <TableID>dbo_H_Ventas</TableID>
+              <ColumnID>Subtotal</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="930ea5cc-6422-470c-9d7a-faccf7be8260">
+          <ID>Impuesto</ID>
+          <Name>Impuesto</Name>
+          <Source dwd:design-time-name="6f028ee2-9914-42d5-93d3-9d24e86d162f">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="5d4f409f-878b-4fef-b259-7e8c3e7789ad">
+              <TableID>dbo_H_Ventas</TableID>
+              <ColumnID>Impuesto</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="bf97d734-ac17-434f-a1c1-e325d5c76800">
+          <ID>Costo Envio</ID>
+          <Name>Costo Envio</Name>
+          <Source dwd:design-time-name="315b1300-bb25-4702-8ee1-bf2cb9612074">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="90a2e18d-5c9e-4d50-bd1c-7ceec2342df7">
+              <TableID>dbo_H_Ventas</TableID>
+              <ColumnID>CostoEnvio</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="1d6ea7e3-88dd-4aab-8ae6-6ca06bc70e5a">
+          <ID>Total</ID>
+          <Name>Total</Name>
+          <Source dwd:design-time-name="fb82134c-fc95-48fb-bd43-fd3253c15340">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="e73578be-450e-4bac-ac1a-41f52d385dab">
+              <TableID>dbo_H_Ventas</TableID>
+              <ColumnID>Total</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="a21e79f9-b068-4caa-b8fe-7fd6e5f24f03">
+          <ID>H Ventas Count</ID>
+          <Name>H Ventas Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="f0b444ae-6603-468c-9273-6355d0046a02">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="b3cfcc9f-f9a8-4c16-ae87-6e47274beb93">
+              <TableID>dbo_H_Ventas</TableID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="d5403688-f6c3-4876-96b8-1d789c438426">
+          <CubeDimensionID>Dim Territorio</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="490dc53d-4a23-49dc-bb5b-e98197b03015">
+              <AttributeID>Id Territorio</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="a868ca4e-225e-4c9b-adb6-8ac3a20aca76">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="bde61693-6b58-4fe7-ae6b-4c3cbae1efd0">
+                    <TableID>dbo_H_Ventas</TableID>
+                    <ColumnID>IdTerritorio</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="ca4ec2a3-7f3b-4fed-9c35-b1d95b72a5a5">
+          <CubeDimensionID>Dim Tarjeta Persona</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="541755dc-14b3-44bd-b608-271732529252">
+              <AttributeID>Id Tarjeta</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="aa2f1f84-3c66-4f52-bddd-2b4f9b8c6cbe">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="3698a440-afcd-409e-806f-e0d675cddd57">
+                    <TableID>dbo_H_Ventas</TableID>
+                    <ColumnID>IdTarjeta</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="e61ed774-5faf-4e7d-a8d3-ad022ddf5cd0">
+          <CubeDimensionID>Dim Moneda</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="f9bdeb68-c2d7-46e8-9d66-981a779c8036">
+              <AttributeID>Tasa Cambio ID</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="30c35739-3031-41f8-b134-ff0f98ae01f4">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="8ee17296-6d31-456e-bfca-e70722d8acd8">
+                    <TableID>dbo_H_Ventas</TableID>
+                    <ColumnID>TasaCambioID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="fc5cf1f4-a38c-4b47-992f-0e4a0623bc65">
+          <CubeDimensionID>Dim Metodo Envio</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="d5ed7b2d-b41f-44e9-97ff-60aa5e785650">
+              <AttributeID>Id Metodo Envio</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="29d7c46c-c5c5-4719-8513-0bc15ff469f2">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="fcfea4ca-0811-4747-b2f1-2cdba18c0cdc">
+                    <TableID>dbo_H_Ventas</TableID>
+                    <ColumnID>IdMetodoEnvio</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="954045b2-7cd5-43a5-86b3-fd4336f677fd">
+          <CubeDimensionID>Dim Tiempo</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="24642381-d0dd-4eca-8db0-a4b0722d174c">
+              <AttributeID>Fecha</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="3b875938-4b9f-4f7f-84f8-9f254ec1de4c">
+                  <DataType>Date</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="85ff20aa-f4db-4a0b-97de-3891d61c7b41">
+                    <TableID>dbo_H_Ventas</TableID>
+                    <ColumnID>FechaOrden</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+  </MeasureGroups>
+  <Source dwd:design-time-name="2635d792-3e28-4a4f-9b61-2deb9f1124cd">
+    <DataSourceViewID>DataWarehouse</DataSourceViewID>
+  </Source>
+</Cube>
