@@ -19,64 +19,64 @@
     <ObjectSnapshots>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
-        <TimeStamp>mmEyr+Rkm1pm8bSTosw+Bv1T4TQ=4/11/2019 14:04:444/11/2019 13:49:26</TimeStamp>
+        <TimeStamp>e+5PDBAS9gHuyzSw2aMzX1jhQo8=06/11/2019 9:07:1706/11/2019 9:07:17</TimeStamp>
         <ID>
-          <String>Data Warehouse</String>
+          <String>DataWarehouse</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.DataSourceView</Type>
-        <TimeStamp>BPEWgpjg4ZFyWl5AEE4uA8skRsQ=4/11/2019 13:49:524/11/2019 13:49:51</TimeStamp>
+        <TimeStamp>4MYT6TIt4r1QPVyeg2KsM4hVJ3o=06/11/2019 9:08:4006/11/2019 9:08:40</TimeStamp>
         <ID>
           <String>DataWarehouse</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Dimension</Type>
-        <TimeStamp>V4bgq4vbYNA+NtmcNBZ58qq9bqI=4/11/2019 13:50:104/11/2019 13:50:10</TimeStamp>
+        <TimeStamp>pa/t9lmdnAowWGLcG7NIq0Z8nYQ=06/11/2019 9:23:1006/11/2019 9:20:00</TimeStamp>
         <ID>
           <String>Dim Territorio</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Dimension</Type>
-        <TimeStamp>Ddlur5qapVzQBngPrHbwvpl9dtA=4/11/2019 13:50:114/11/2019 13:50:10</TimeStamp>
+        <TimeStamp>fi417NttIU8gIXYaf5j7Jtihq94=06/11/2019 9:23:3106/11/2019 9:20:00</TimeStamp>
         <ID>
           <String>Dim Tarjeta Persona</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Dimension</Type>
-        <TimeStamp>bQZBoZ1P0S1Ejfta3L7KZOnqTQ4=4/11/2019 13:50:114/11/2019 13:50:10</TimeStamp>
+        <TimeStamp>pBILIjSZP8HW7mUCdENuSbRh4T4=06/11/2019 9:23:4606/11/2019 9:20:00</TimeStamp>
         <ID>
           <String>Dim Moneda</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Dimension</Type>
-        <TimeStamp>Hp2wm0ZFP+iKrdzXLvFJ7bMMU/I=4/11/2019 13:50:114/11/2019 13:50:10</TimeStamp>
+        <TimeStamp>gB9jl3SCqYPz1u5555FMNLU30+Q=06/11/2019 9:24:0106/11/2019 9:20:00</TimeStamp>
         <ID>
           <String>Dim Metodo Envio</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Dimension</Type>
-        <TimeStamp>Cl2QbR/AunZXQIsBUg6mPqeh1lI=4/11/2019 13:50:114/11/2019 13:50:10</TimeStamp>
+        <TimeStamp>Vt+TOl0N4zNLb6Togo7zbd90DJI=06/11/2019 9:24:2506/11/2019 9:20:00</TimeStamp>
         <ID>
           <String>Dim Tiempo</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Cube</Type>
-        <TimeStamp>g+DNZCLnJoh1Rn9LhYwpQkCLSb8=4/11/2019 13:50:114/11/2019 13:50:10xC0kGAa0fWNc13+PGV7BOT+ZBbc=4/11/2019 13:50:114/11/2019 13:50:10</TimeStamp>
+        <TimeStamp>QHLf1NTL3N4k0FB01hXjrdtnx7o=06/11/2019 9:24:2506/11/2019 9:20:00xmjA1KYoclwOL0RWQoPAEzG1lr0=06/11/2019 9:20:0006/11/2019 9:20:00</TimeStamp>
         <ID>
-          <String>DataWarehouse</String>
+          <String>Cubo_Ventas_AdventureWorks</String>
         </ID>
       </ObjectSnapshot>
     </ObjectSnapshots>
     <DatabaseSnapshot>
       <Type>Microsoft.AnalysisServices.Database</Type>
-      <TimeStamp>QOsA688OEMtIyOirwH0bntKhorY=4/11/2019 13:48:464/11/2019 13:48:46</TimeStamp>
+      <TimeStamp>BaxsmYYSmLNvQHSd/wgCHxVhnus=06/11/2019 8:40:3606/11/2019 8:40:36</TimeStamp>
       <ID>
         <String>DataWarehouse</String>
       </ID>
@@ -85,5 +85,5 @@
   </Snapshot>
   <AssemblyLocations />
   <ProcessingComplete>true</ProcessingComplete>
-  <LastDeployed>2019-11-04T17:05:27.016667Z</LastDeployed>
+  <LastDeployed>2019-11-06T12:24:35.29Z</LastDeployed>
 </DeploymentSnapshot>

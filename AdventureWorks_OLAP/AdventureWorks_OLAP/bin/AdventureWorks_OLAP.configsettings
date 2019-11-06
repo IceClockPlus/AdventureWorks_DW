@@ -2,11 +2,12 @@
   <Database>
     <DataSources>
       <DataSource>
-        <ID>Data Warehouse</ID>
+        <ID>DataWarehouse</ID>
         <ConnectionString>Provider=SQLNCLI11.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=DataWarehouse</ConnectionString>
         <ImpersonationInfo>
-          <ImpersonationMode xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">ImpersonateServiceAccount</ImpersonationMode>
-          <ImpersonationInfoSecurity xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">Unchanged</ImpersonationInfoSecurity>
+          <ImpersonationMode xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">ImpersonateAccount</ImpersonationMode>
+          <Account xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">Alexis</Account>
+          <ImpersonationInfoSecurity xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">PasswordRemoved</ImpersonationInfoSecurity>
         </ImpersonationInfo>
       </DataSource>
     </DataSources>
@@ -29,7 +30,7 @@
     </Dimensions>
     <Cubes>
       <Cube>
-        <ID>DataWarehouse</ID>
+        <ID>Cubo_Ventas_AdventureWorks</ID>
         <MeasureGroups>
           <MeasureGroup>
             <ID>H Ventas</ID>

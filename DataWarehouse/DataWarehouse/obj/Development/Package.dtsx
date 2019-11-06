@@ -12,8 +12,8 @@
   DTS:MaxErrorCount="10"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="51"
-  DTS:VersionGUID="{85EEAA35-A2DA-4F91-A77E-3AD69607DDA6}">
+  DTS:VersionBuild="54"
+  DTS:VersionGUID="{007832A1-688E-47CC-96FC-C9AB18BDA3E6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -24,7 +24,7 @@
       DTS:ObjectName="localhost.AdventureWorks2017">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=AdventureWorks2017;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{A2646ED2-D2D2-4FC6-959F-BB3C1941E8DC}localhost.AdventureWorks2017;" />
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=AdventureWorks2017;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -34,7 +34,7 @@
       DTS:ObjectName="localhost.DataWarehouse">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=DataWarehouse;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=DataWarehouse;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -2642,7 +2642,7 @@ FROM            Sales.CurrencyRate INNER JOIN
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        CC.CreditCardID, CASE WHEN P.Title IN ('MR.', 'SR,') THEN 'Hombre' WHEN P.Title IN ('Ms.', 'SRA.,') THEN 'Mujer' END AS Sexo, CC.CardType, CC.ExpYear, P.PersonType
 FROM            Sales.CreditCard CC, Sales.PersonCreditCard PCC, Person.Person P
-WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.BusinessEntityID AND (P.Title IS NOT NULL)</property>
+WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.BusinessEntityID</property>
                 <property
                   dataType="System.String"
                   description="Variable que contiene el comando SQL para ejecutar."
@@ -3782,86 +3782,6 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
           version="1">
           <components>
             <component
-              refId="Package\H_Ventas\Conversion de TasaCambioID null"
-              componentClassID="Microsoft.DerivedColumn"
-              contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
-              description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
-              name="Conversion de TasaCambioID null"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\H_Ventas\Conversion de TasaCambioID null.Inputs[Entrada de columna derivada]"
-                  description="Entrada en la transformación Columna derivada"
-                  name="Entrada de columna derivada">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\H_Ventas\Conversion de TasaCambioID null.Inputs[Entrada de columna derivada].Columns[CurrencyRateID]"
-                      cachedDataType="i4"
-                      cachedName="CurrencyRateID"
-                      lineageId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[CurrencyRateID]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\H_Ventas\Conversion de TasaCambioID null.Outputs[Salida de columna derivada]"
-                  description="Salida predeterminada de la transformación Columna derivada"
-                  exclusionGroup="1"
-                  name="Salida de columna derivada"
-                  synchronousInputId="Package\H_Ventas\Conversion de TasaCambioID null.Inputs[Entrada de columna derivada]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\H_Ventas\Conversion de TasaCambioID null.Outputs[Salida de columna derivada].Columns[TasaCambioID]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Cálculo"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\H_Ventas\Conversion de TasaCambioID null.Outputs[Salida de columna derivada].Columns[TasaCambioID]"
-                      name="TasaCambioID"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Expresión de columna derivada"
-                          name="Expression">[REPLACENULL](#{Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[CurrencyRateID]},0)</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Expresión descriptiva de columna derivada"
-                          expressionType="Notify"
-                          name="FriendlyExpression">REPLACENULL(CurrencyRateID,0)</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\H_Ventas\Conversion de TasaCambioID null.Outputs[Salida de error de columna derivada]"
-                  description="Salida de error de la transformación Columna derivada"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Salida de error de columna derivada"
-                  synchronousInputId="Package\H_Ventas\Conversion de TasaCambioID null.Inputs[Entrada de columna derivada]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\H_Ventas\Conversion de TasaCambioID null.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\H_Ventas\Conversion de TasaCambioID null.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\H_Ventas\Conversion de TasaCambioID null.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\H_Ventas\Conversion de TasaCambioID null.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\H_Ventas\Destino de OLE DB"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
@@ -3958,12 +3878,6 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
                       externalMetadataColumnId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdTerritorio]"
                       lineageId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[TerritoryID]" />
                     <inputColumn
-                      refId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[ShipMethodID]"
-                      cachedDataType="i4"
-                      cachedName="ShipMethodID"
-                      externalMetadataColumnId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdMetodoEnvio]"
-                      lineageId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[ShipMethodID]" />
-                    <inputColumn
                       refId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CreditCardID]"
                       cachedDataType="i4"
                       cachedName="CreditCardID"
@@ -3988,11 +3902,17 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
                       externalMetadataColumnId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Total]"
                       lineageId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[TotalDue]" />
                     <inputColumn
-                      refId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[TasaCambioID]"
+                      refId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CurrencyRateID]"
                       cachedDataType="i4"
-                      cachedName="TasaCambioID"
+                      cachedName="CurrencyRateID"
                       externalMetadataColumnId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TasaCambioID]"
-                      lineageId="Package\H_Ventas\Conversion de TasaCambioID null.Outputs[Salida de columna derivada].Columns[TasaCambioID]" />
+                      lineageId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[CurrencyRateID]" />
+                    <inputColumn
+                      refId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[ShipMethodID]"
+                      cachedDataType="i4"
+                      cachedName="ShipMethodID"
+                      externalMetadataColumnId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdMetodoEnvio]"
+                      lineageId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[ShipMethodID]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -4089,7 +4009,19 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
                   dataType="System.String"
                   description="Comando SQL para ejecutar."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [SalesOrderID]
+      ,[OrderDate]
+      ,[TerritoryID]
+      ,[ShipMethodID]
+      ,[CreditCardID]
+      ,[CurrencyRateID]
+      ,[SubTotal]
+      ,[TaxAmt]
+      ,[Freight]
+      ,[TotalDue]
+  FROM [AdventureWorks2017].[Sales].[SalesOrderHeader]
+  WHERE [CreditCardID] IS NOT NULL
+  AND [CurrencyRateID] IS NOT NULL</property>
                 <property
                   dataType="System.String"
                   description="Variable que contiene el comando SQL para ejecutar."
@@ -4106,7 +4038,7 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
                   dataType="System.Int32"
                   description="Especifica el modo utilizado para obtener acceso a la base de datos."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">2</property>
                 <property
                   dataType="System.String"
                   description="Asignaciones entre los parámetros del comando SQL y las variables."
@@ -4223,64 +4155,13 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
                       dataType="i4"
                       name="SalesOrderID" />
                     <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[RevisionNumber]"
-                      dataType="ui1"
-                      name="RevisionNumber" />
-                    <externalMetadataColumn
                       refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[OrderDate]"
                       dataType="dbTimeStamp"
                       name="OrderDate" />
                     <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[DueDate]"
-                      dataType="dbTimeStamp"
-                      name="DueDate" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[ShipDate]"
-                      dataType="dbTimeStamp"
-                      name="ShipDate" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Status]"
-                      dataType="ui1"
-                      name="Status" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[OnlineOrderFlag]"
-                      dataType="bool"
-                      name="OnlineOrderFlag" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[SalesOrderNumber]"
-                      dataType="wstr"
-                      length="25"
-                      name="SalesOrderNumber" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[PurchaseOrderNumber]"
-                      dataType="wstr"
-                      length="25"
-                      name="PurchaseOrderNumber" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[AccountNumber]"
-                      dataType="wstr"
-                      length="15"
-                      name="AccountNumber" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[CustomerID]"
-                      dataType="i4"
-                      name="CustomerID" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[SalesPersonID]"
-                      dataType="i4"
-                      name="SalesPersonID" />
-                    <externalMetadataColumn
                       refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[TerritoryID]"
                       dataType="i4"
                       name="TerritoryID" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[BillToAddressID]"
-                      dataType="i4"
-                      name="BillToAddressID" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[ShipToAddressID]"
-                      dataType="i4"
-                      name="ShipToAddressID" />
                     <externalMetadataColumn
                       refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[ShipMethodID]"
                       dataType="i4"
@@ -4289,12 +4170,6 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
                       refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[CreditCardID]"
                       dataType="i4"
                       name="CreditCardID" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[CreditCardApprovalCode]"
-                      codePage="1252"
-                      dataType="str"
-                      length="15"
-                      name="CreditCardApprovalCode" />
                     <externalMetadataColumn
                       refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[CurrencyRateID]"
                       dataType="i4"
@@ -4315,19 +4190,6 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
                       refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[TotalDue]"
                       dataType="cy"
                       name="TotalDue" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Comment]"
-                      dataType="wstr"
-                      length="128"
-                      name="Comment" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[rowguid]"
-                      dataType="guid"
-                      name="rowguid" />
-                    <externalMetadataColumn
-                      refId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[ModifiedDate]"
-                      dataType="dbTimeStamp"
-                      name="ModifiedDate" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -4405,13 +4267,8 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
           </components>
           <paths>
             <path
-              refId="Package\H_Ventas.Paths[Salida de columna derivada]"
-              endId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
-              name="Salida de columna derivada"
-              startId="Package\H_Ventas\Conversion de TasaCambioID null.Outputs[Salida de columna derivada]" />
-            <path
               refId="Package\H_Ventas.Paths[Salida de origen de OLE DB]"
-              endId="Package\H_Ventas\Conversion de TasaCambioID null.Inputs[Entrada de columna derivada]"
+              endId="Package\H_Ventas\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
               name="Salida de origen de OLE DB"
               startId="Package\H_Ventas\Origen de OLE DB.Outputs[Salida de origen de OLE DB]" />
           </paths>
@@ -4474,27 +4331,27 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="164,42"
+          Size="164,41.6"
           Id="Package\Dim_MetodoEnvio"
           TopLeft="264,229" />
         <NodeLayout
-          Size="141,42"
+          Size="140.8,41.6"
           Id="Package\Dim_Moneda"
           TopLeft="434.5,419.25" />
         <NodeLayout
-          Size="174,42"
+          Size="174.4,41.6"
           Id="Package\Dim_TarjetaPersona"
           TopLeft="149,113" />
         <NodeLayout
-          Size="147,42"
+          Size="147.2,41.6"
           Id="Package\Dim_Territorio"
           TopLeft="350,324" />
         <NodeLayout
-          Size="180,42"
+          Size="180,41.6"
           Id="Package\Eliminar Datos Hecho"
           TopLeft="0,21" />
         <NodeLayout
-          Size="124,42"
+          Size="124,41.6"
           Id="Package\H_Ventas"
           TopLeft="561.5,513.25" />
         <EdgeLayout
@@ -4926,7 +4783,9 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4960,7 +4819,9 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4994,7 +4855,9 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5016,7 +4879,9 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5062,7 +4927,9 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5108,35 +4975,35 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="174,42"
+          Size="174.4,41.6"
           Id="Package\Dim_TarjetaPersona\Tarjetas Credito DW"
           TopLeft="526,69" />
         <NodeLayout
-          Size="171,42"
+          Size="171.2,41.6"
           Id="Package\Dim_TarjetaPersona\División condicional"
           TopLeft="377,438" />
         <NodeLayout
-          Size="175,42"
+          Size="175.2,41.6"
           Id="Package\Dim_TarjetaPersona\Conversión de datos"
           TopLeft="380,539" />
         <NodeLayout
-          Size="117,42"
+          Size="116.8,41.6"
           Id="Package\Dim_TarjetaPersona\Ordenar"
           TopLeft="234,181" />
         <NodeLayout
-          Size="183,42"
+          Size="183.2,41.6"
           Id="Package\Dim_TarjetaPersona\Ordenar por IdTarjeta"
           TopLeft="518,184" />
         <NodeLayout
-          Size="168,42"
+          Size="168,41.6"
           Id="Package\Dim_TarjetaPersona\Destino de OLE DB"
           TopLeft="379,643" />
         <NodeLayout
-          Size="189,42"
+          Size="188.8,41.6"
           Id="Package\Dim_TarjetaPersona\Tarjetas Credito Origen"
           TopLeft="196,68" />
         <NodeLayout
-          Size="190,42"
+          Size="190.4,41.6"
           Id="Package\Dim_TarjetaPersona\Combinación de mezcla"
           TopLeft="365,326" />
         <EdgeLayout
@@ -5159,7 +5026,7 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-57.83673828125,19.89404296875,115.6734765625,11.7119140625"
+              BoundingBox="-34.07703125,20.0576171875,68.1540625,11.384765625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5182,9 +5049,7 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-19.15453125,26.85107421875,38.3090625,9.7978515625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5206,9 +5071,7 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5242,9 +5105,7 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="49.4288020833333,66.2839248434238,38.3090625,9.7978515625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5278,9 +5139,7 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5302,9 +5161,7 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-19.15453125,22.35107421875,38.3090625,9.7978515625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5326,9 +5183,7 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-19.15453125,26.35107421875,38.3090625,9.7978515625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5576,79 +5431,41 @@ WHERE        CC.CreditCardID = PCC.CreditCardID AND PCC.BusinessEntityID = P.Bus
     design-time-name="Package\H_Ventas">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="164,42"
-          Id="Package\H_Ventas\Origen de OLE DB"
-          TopLeft="222,51" />
-        <NodeLayout
-          Size="168,42"
+          Size="168,41.6"
           Id="Package\H_Ventas\Destino de OLE DB"
           TopLeft="365,274" />
         <NodeLayout
-          Size="238,42"
-          Id="Package\H_Ventas\Conversion de TasaCambioID null"
-          TopLeft="205,159" />
+          Size="164,41.6"
+          Id="Package\H_Ventas\Origen de OLE DB"
+          TopLeft="236.285714528999,43.0470587119924" />
         <EdgeLayout
           Id="Package\H_Ventas.Paths[Salida de origen de OLE DB]"
-          TopLeft="304,93">
+          TopLeft="318.285714528999,84.6470587119924">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="20,66"
+              EndConnector="130.714285471001,189.352941288008"
               Start="0,0"
-              End="20,58.5">
+              End="130.714285471001,181.852941288008">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29" />
+                    End="0,90.6764706440038" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,29"
-                    Point2="0,33"
-                    Point3="4,33" />
+                    Point1="0,90.6764706440038"
+                    Point2="0,94.6764706440038"
+                    Point3="4,94.6764706440038" />
                   <mssgle:LineSegment
-                    End="16,33" />
+                    End="126.714285471001,94.6764706440038" />
                   <mssgle:CubicBezierSegment
-                    Point1="16,33"
-                    Point2="20,33"
-                    Point3="20,37" />
+                    Point1="126.714285471001,94.6764706440038"
+                    Point2="130.714285471001,94.6764706440038"
+                    Point3="130.714285471001,98.6764706440038" />
                   <mssgle:LineSegment
-                    End="20,58.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\H_Ventas.Paths[Salida de columna derivada]"
-          TopLeft="324,201">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="125,73"
-              Start="0,0"
-              End="125,65.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,32.5"
-                    Point2="0,36.5"
-                    Point3="4,36.5" />
-                  <mssgle:LineSegment
-                    End="121,36.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="121,36.5"
-                    Point2="125,36.5"
-                    Point3="125,40.5" />
-                  <mssgle:LineSegment
-                    End="125,65.5" />
+                    End="130.714285471001,181.852941288008" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

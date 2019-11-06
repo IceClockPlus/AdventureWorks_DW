@@ -27,7 +27,7 @@ CREATE TABLE[Dim_Tiempo](
 
 CREATE TABLE [Dim_TarjetaPersona](
 	[IdTarjeta] int NOT NULL,
-	[Sexo] nvarchar(20) NOT NULL,
+	[Sexo] nvarchar(20) NULL,
 	[TipoTarjeta] nvarchar(50) NOT NULL,
 	[FechaExp] int NOT NULL,
 	[TipoPersona] nchar(2) NOT NULL
